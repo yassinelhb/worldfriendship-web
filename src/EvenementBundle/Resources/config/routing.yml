@@ -1,0 +1,35 @@
+homepage:
+    path:     /
+accueil_evenement:
+    path:     /accueil_evenement
+    defaults: { _controller: EvenementBundle:Evenement:afficherEvenement }
+ajouter_evenement:
+    path:     /ajouter_evenement
+    defaults: { _controller: EvenementBundle:Evenement:ajouterEvenement }
+modifier_evenement:
+    path:     /modifier_evenement
+    defaults: { _controller: EvenementBundle:Evenement:modifierEvenement }
+supprimer_evenement:
+  path:     /supprimer_evenement
+  defaults: { _controller: EvenementBundle:Evenement:supprimerEvenement }
+afficher_mes_evenements:
+    path:     /mes_evenements
+    defaults: { _controller: EvenementBundle:Evenement:afficherMesEvenement }
+details_evenement:
+  path:     /details_evenement
+  defaults: { _controller: EvenementBundle:Evenement:detailsEvenement }
+reservation_evenement:
+  path:     /reservation_evenement
+  defaults: { _controller: EvenementBundle:Evenement:reservationEvenement }
+autre_evenement:
+  path:     /autre_evenement
+  defaults: { _controller: EvenementBundle:Evenement:autreEvenement }
+envoyer_ticket:
+    path:     /envoyer_ticket
+    defaults: { _controller: EvenementBundle:Evenement:envoyerTicket }
+envoyer_test:
+    path:     /test
+    defaults: { _controller: EvenementBundle:Evenement:test }
+pdf_test:
+  path:     /testpdf
+  defaults: { _controller: EvenementBundle:Evenement:testpdf }

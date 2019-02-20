@@ -1,0 +1,106 @@
+{% extends '@Produit/layouts/nav.html.twig' %}
+
+{% block wraptt %}
+
+    <div class="wrap-tt">
+        <a href="/home">Home <i class="fa fa-angle-right"></i> </a>
+        <a href="/product">Product <i class="fa fa-angle-right"></i></a>
+        Panier
+
+    </div>
+
+{% endblock %}
+
+{% block sectionpp %}
+
+    <div class="section-panier">
+        <div class="card card-panier">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Panier
+                </h1>
+            </div>
+            <div class="card-body">
+                <div class="item-panier">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="../assets/img/product/img5.jpg">
+                        </div>
+                        <div class="col-md-5 prod-info">
+                            <a class="titleprod">Hummingbird printed t-shirt</a>
+                            <p class="priceprod">230 TND</p>
+                            <p class="tailleprod">Taille: S</p>
+                            <p class="tailleprod">Couleur: Noir</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="inputNbprod">
+                                        <input type="text" value="1" min="1">
+                                        <div class="vertical-btn">
+                                            <button><i class="fa fa-angle-up"></i></button>
+                                            <button><i class="fa fa-angle-down"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="priceTotprod">6835 TND</span>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn-delete"><i class="fa fa-trash"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{%  block javascripts %}
+
+
+    <script>
+        $(document).ready(function(){
+            $(".fa-th-list").click(function(){
+                document.getElementById("listprod").classList.add("listprod");
+                $(this).css("color","#333");
+                $(".fa-th").css("color","#888888");
+
+            });
+            $(".fa-th").click(function(){
+                document.getElementById("listprod").classList.remove("listprod");
+                $(this).css("color","#333");
+                $(".fa-th-list").css("color","#888888");
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".btn-view").click(function(){
+                $(".wr-loading").show();
+                $(".modal-product").show();
+                $(".modal-content").slideUp( 300 ).delay( 1000 ).fadeIn(350);
+                $(".wr-loading").delay( 1000 ).fadeOut(350);
+                $('html, body').css('overflow-y', 'hidden');
+
+
+            });
+
+            $(".modal-close").click(function(){
+                $(".modal-product").hide();
+                $(".modal-content").hide();
+                $('html, body').css('overflow-y', 'auto');
+
+
+
+            });
+        });
+    </script>
+
+{% endblock %}

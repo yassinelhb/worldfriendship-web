@@ -1,0 +1,418 @@
+<?php
+
+namespace UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Evenement
+ *
+ * @ORM\Table(name="evenement")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\EvenementRepository")
+ */
+class Evenement
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_user", type="integer")
+     */
+    private $idUser;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_categorie", type="integer")
+     */
+    private $idCategorie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_evenement", type="string", length=255)
+     */
+    private $nomEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_evenement", type="string", length=255)
+     */
+    private $typeEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_reservation", type="string", length=255)
+     */
+    private $typeReservation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_evenement", type="string", length=255)
+     */
+    private $dateEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duree_evenement", type="string", length=255)
+     */
+    private $dureeEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu_evenement", type="string", length=255)
+     */
+    private $lieuEvenement;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="capacite_evenement", type="integer")
+     */
+    private $capaciteEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_evenement", type="string", length=255)
+     */
+    private $descriptionEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etat_evenement", type="string", length=255)
+     */
+    private $etatEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="affiche_evenement", type="string", length=255)
+     */
+    private $afficheEvenement;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="prix_evenement", type="integer")
+     */
+    private $prixEvenement;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Evenement
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return int
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set idCategorie
+     *
+     * @param integer $idCategorie
+     *
+     * @return Evenement
+     */
+    public function setIdCategorie($idCategorie)
+    {
+        $this->idCategorie = $idCategorie;
+
+        return $this;
+    }
+
+    /**
+     * Get idCategorie
+     *
+     * @return int
+     */
+    public function getIdCategorie()
+    {
+        return $this->idCategorie;
+    }
+
+    /**
+     * Set nomEvenement
+     *
+     * @param string $nomEvenement
+     *
+     * @return Evenement
+     */
+    public function setNomEvenement($nomEvenement)
+    {
+        $this->nomEvenement = $nomEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get nomEvenement
+     *
+     * @return string
+     */
+    public function getNomEvenement()
+    {
+        return $this->nomEvenement;
+    }
+
+    /**
+     * Set typeEvenement
+     *
+     * @param string $typeEvenement
+     *
+     * @return Evenement
+     */
+    public function setTypeEvenement($typeEvenement)
+    {
+        $this->typeEvenement = $typeEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get typeEvenement
+     *
+     * @return string
+     */
+    public function getTypeEvenement()
+    {
+        return $this->typeEvenement;
+    }
+
+    /**
+     * Set typeReservation
+     *
+     * @param string $typeReservation
+     *
+     * @return Evenement
+     */
+    public function setTypeReservation($typeReservation)
+    {
+        $this->typeReservation = $typeReservation;
+
+        return $this;
+    }
+
+    /**
+     * Get typeReservation
+     *
+     * @return string
+     */
+    public function getTypeReservation()
+    {
+        return $this->typeReservation;
+    }
+
+    /**
+     * Set dateEvenement
+     *
+     * @param string $dateEvenement
+     *
+     * @return Evenement
+     */
+    public function setDateEvenement($dateEvenement)
+    {
+        $this->dateEvenement = $dateEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEvenement
+     *
+     * @return string
+     */
+    public function getDateEvenement()
+    {
+        return $this->dateEvenement;
+    }
+
+
+
+    /**
+     * Set lieuEvenement
+     *
+     * @param string $lieuEvenement
+     *
+     * @return Evenement
+     */
+    public function setLieuEvenement($lieuEvenement)
+    {
+        $this->lieuEvenement = $lieuEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get lieuEvenement
+     *
+     * @return string
+     */
+    public function getLieuEvenement()
+    {
+        return $this->lieuEvenement;
+    }
+
+
+
+    /**
+     * Set descriptionEvenement
+     *
+     * @param string $descriptionEvenement
+     *
+     * @return Evenement
+     */
+    public function setDescriptionEvenement($descriptionEvenement)
+    {
+        $this->descriptionEvenement = $descriptionEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionEvenement
+     *
+     * @return string
+     */
+    public function getDescriptionEvenement()
+    {
+        return $this->descriptionEvenement;
+    }
+
+    /**
+     * Set etatEvenement
+     *
+     * @param string $etatEvenement
+     *
+     * @return Evenement
+     */
+    public function setEtatEvenement($etatEvenement)
+    {
+        $this->etatEvenement = $etatEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get etatEvenement
+     *
+     * @return string
+     */
+    public function getEtatEvenement()
+    {
+        return $this->etatEvenement;
+    }
+
+    /**
+     * Set prixEvenement
+     *
+     * @param integer $prixEvenement
+     *
+     * @return Evenement
+     */
+    public function setPrixEvenement($prixEvenement)
+    {
+        $this->prixEvenement = $prixEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get prixEvenement
+     *
+     * @return int
+     */
+    public function getPrixEvenement()
+    {
+        return $this->prixEvenement;
+    }
+
+    /**
+     * Set dureeEvenement
+     *
+     * @param string $dureeEvenement
+     *
+     * @return Evenement
+     */
+    public function setDureeEvenement($dureeEvenement)
+    {
+        $this->dureeEvenement = $dureeEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get dureeEvenement
+     *
+     * @return string
+     */
+    public function getDureeEvenement()
+    {
+        return $this->dureeEvenement;
+    }
+
+    /**
+     * Set capaciteEvenement
+     *
+     * @param integer $capaciteEvenement
+     *
+     * @return Evenement
+     */
+    public function setCapaciteEvenement($capaciteEvenement)
+    {
+        $this->capaciteEvenement = $capaciteEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get capaciteEvenement
+     *
+     * @return integer
+     */
+    public function getCapaciteEvenement()
+    {
+        return $this->capaciteEvenement;
+    }
+}

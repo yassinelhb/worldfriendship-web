@@ -1,0 +1,3 @@
+experience_homepage:
+    path:     /
+    defaults: { _controller: ExperienceBundle:Experience:index }

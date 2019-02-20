@@ -1,0 +1,19 @@
+produit_homepage:
+    path:     /
+    defaults: { _controller: ProduitBundle:Produit:index }
+
+produit_categorie:
+    path:     /categorie
+    defaults: { _controller: ProduitBundle:Produit:categorie }
+
+produit_produit:
+  path:     /prod
+  defaults: { _controller: ProduitBundle:Produit:produit }
+
+produit_search:
+  path:     /search
+  defaults: { _controller: ProduitBundle:Produit:search }
+
+produit_panier:
+  path:     /panier
+  defaults: { _controller: ProduitBundle:Produit:panier }

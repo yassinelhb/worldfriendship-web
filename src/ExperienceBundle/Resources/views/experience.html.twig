@@ -1,0 +1,328 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+        <!--Slider Area-->
+        <section class="swiper-slider-area">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-inner dark-overlay single-swiper-slider" style="background:url({{ asset('assets/img/3.jpg') }})">
+                            <div class="display-table">
+                                <div class="table-cell">
+                                    <h1>mining</h1>
+                                    <h2>processing power</h2>
+                                    <a class="btn-default btn-big btn-fill" href="">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-inner dark-overlay single-swiper-slider" style="background:url({{ asset('assets/img/6.jpg') }})">
+                            <div class="display-table">
+                                <div class="table-cell">
+                                    <h1>Blockchain</h1>
+                                    <h2>leading software platform</h2>
+                                    <a class="btn-default btn-big btn-fill" href="">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-inner dark-overlay single-swiper-slider" style="background:url({{ asset('assets/img/7.jpg') }})">
+                            <div class="display-table">
+                                <div class="table-cell">
+                                    <h1>Industry</h1>
+                                    <h2>Building Crypto</h2>
+                                    <a class="btn-default btn-big btn-fill" href="">What we do</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+            </div>
+        </section><!--/Slider Area-->
+
+    <!-- How works Area -->
+    <section class="how-works section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h2>How It <span>Works</span></h2>
+                        <p>Sed ut perspiciatis, unde omnis isteew nouat error sit voluptatem</p>
+                        <div class="product-img" style="background:url({{asset('assets/img/blog/1.jpg')}});width: 200px;height: 200px">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="how-to-sec">
+                        <div class="how-to">
+								<span class="how-icon">
+									<i class="fa fa-user"></i>
+								</span>
+                            <h3>Create ID</h3>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
+                        </div>
+                        <div class="how-to">
+								<span class="how-icon">
+									<i class="fa fa-credit-card"></i>
+								</span>
+                            <h3>Make Payment</h3>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
+                        </div>
+                        <div class="how-to">
+								<span class="how-icon">
+									<i class="fa fa-shopping-cart"></i>
+								</span>
+                            <h3>Shop now</h3>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /How works Area -->
+
+    <!-- Currency Converter Area -->
+    <section class="currency-converter-section section-padding dark-overlay" data-parallax="scroll" data-speed="0.6" data-image-src="assets/img/6.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-map">
+                        <img src="assets/img/map.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="currency-converter">
+                        <h2 class="title">Crypto <span>converter</span></h2>
+                        <p>Bitcoin is a form of digital currency, created and held electronically. No one controls it. Bitcoins aren’t printed, like dollars or euros – they’re produced by people, and increasingly businesses, running computers all around the world</p>
+                        <script src="{{ asset('assets/js/teckdevs/teccalc_widget.js') }}"></script>
+                        <a class="btn-default btn-big btn-fill" href="">Exchange now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Currency Converter Area -->
+
+    <!-- Chart Area -->
+    <section class="chart-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-content">
+                        <h2 class="title">Chart <span>Content</span></h2>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        <a class="btn-default btn-big btn-fill" href="">Compare now</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bit-chart">
+                        <img src="assets/img/chart.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Chart Area -->
+
+    <!--Team Area-->
+    <section class="team-area section-padding blue-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="section-title">
+                        <h2>Our <span>Team</span></h2>
+                        <p>There are many variations of passages of Lorem Ipsum available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="single-member">
+                        <div class="single-team-details">
+                            <img src="assets/img/team/1.jpg" alt="" />
+                            <div class="team-member-name">
+                                JAMIE BRYAN
+                            </div>
+                            <div class="team-member-des">
+                                CEO
+                            </div>
+                        </div>
+                        <div class="single-mem-des">
+                            <p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
+                            <a href=""><i class="fa fa-medium"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="single-member">
+                        <div class="single-team-details">
+                            <img src="assets/img/team/2.jpg" alt="" />
+                            <div class="team-member-name">
+                                SHEILA TURNER
+                            </div>
+                            <div class="team-member-des">
+                                CONSULTANT
+                            </div>
+                        </div>
+                        <div class="single-mem-des">
+                            <p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
+                            <a href=""><i class="fa fa-medium"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="single-member">
+                        <div class="single-team-details">
+                            <img src="assets/img/team/3.jpg" alt="" />
+                            <div class="team-member-name">
+                                GRANT WATSON
+                            </div>
+                            <div class="team-member-des">
+                                ANALYST
+                            </div>
+                        </div>
+                        <div class="single-mem-des">
+                            <p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
+                            <a href=""><i class="fa fa-medium"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="single-member">
+                        <div class="single-team-details">
+                            <img src="assets/img/team/4.jpg" alt="" />
+                            <div class="team-member-name">
+                                NEAL HALE
+                            </div>
+                            <div class="team-member-des">
+                                DEVELOPER
+                            </div>
+                        </div>
+                        <div class="single-mem-des">
+                            <p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
+                            <a href=""><i class="fa fa-medium"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/Team Area-->
+
+    <!-- Client Review-->
+    <section class="client-reviews section-padding dark-overlay" data-parallax="scroll" data-speed="0.6" data-image-src="assets/img/11.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2><span>Client</span> Reviews</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <div class="owl-carousel single-review">
+                        <div class="reviews">
+                            <i class="ti-quote-right"></i>
+                            <p>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network.</p>
+                            <strong>Plabon Miah</strong>
+                        </div>
+                        <div class="reviews">
+                            <i class="ti-quote-right"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non nulla placeat, odio, qui dicta alias.</p>
+                            <strong>Steve Husain</strong>
+                        </div>
+                        <div class="reviews">
+                            <i class="ti-quote-right"></i>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                            <strong>Progra Lora</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Client Review-->
+
+    <!-- News Area -->
+    <section class="news-area2 section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="section-title">
+                        <h2>Recent <span>News</span></h2>
+                        <p>There are many variations of passages of Lorem Ipsum available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="news-boxx owl-carousel">
+                        <a href=""><div class="news-box2">
+                                <img class="img-ops" src="assets/img/blog/1.jpg" alt="" />
+                                <div class="news-data2">
+                                    <p class="news-cat">Bitcoin</p>
+                                    <img src="assets/img/icons/7.png" alt="" />
+                                    <h2>Bitcoin rushing!!</h2>
+                                    <p class="news-meta">
+                                        <span>November 7, 2018</span>
+                                        <span><i class="ti-eye"></i> 2046</span>
+                                        <span><i class="ti-comment"></i> 65</span>
+                                    </p>
+                                </div>
+                            </div></a>
+                        <a href=""><div class="news-box2">
+                                <img class="img-ops" src="assets/img/blog/1.jpg" alt="" />
+                                <div class="news-data2">
+                                    <p class="news-cat">Lite coin</p>
+                                    <img src="assets/img/icons/8.png" alt="" />
+                                    <h2>Litecoin boring news</h2>
+                                    <p class="news-meta">
+                                        <span>November 7, 2018</span>
+                                        <span><i class="ti-eye"></i> 2046</span>
+                                        <span><i class="ti-comment"></i> 65</span>
+                                    </p>
+                                </div>
+                            </div></a>
+                        <a href=""><div class="news-box2">
+                                <img class="img-ops" src="assets/img/blog/1.jpg" alt="" />
+                                <div class="news-data2">
+                                    <p class="news-cat">Ethereum</p>
+                                    <img src="assets/img/icons/9.png" alt="" />
+                                    <h2>Litecoin boring news</h2>
+                                    <p class="news-meta">
+                                        <span>November 7, 2018</span>
+                                        <span><i class="ti-eye"></i> 2046</span>
+                                        <span><i class="ti-comment"></i> 65</span>
+                                    </p>
+                                </div>
+                            </div></a>
+                        <a href=""><div class="news-box2">
+                                <img class="img-ops" src="assets/img/blog/1.jpg" alt="" />
+                                <div class="news-data2">
+                                    <p class="news-cat">Zcash</p>
+                                    <img src="assets/img/icons/7.png" alt="" />
+                                    <h2>Litecoin boring news</h2>
+                                    <p class="news-meta">
+                                        <span>November 7, 2018</span>
+                                        <span><i class="ti-eye"></i> 2046</span>
+                                        <span><i class="ti-comment"></i> 65</span>
+                                    </p>
+                                </div>
+                            </div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /News Area -->
+
+
+
+{% endblock %}
