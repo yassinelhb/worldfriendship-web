@@ -12,9 +12,14 @@ modifier_evenement:
 supprimer_evenement:
   path:     /supprimer_evenement
   defaults: { _controller: EvenementBundle:Evenement:supprimerEvenement }
+
+mes_evenements_donnees:
+    path:     /mes_evenements_donnees
+    defaults: { _controller: EvenementBundle:Evenement:mesEvenementsDonnees }
 afficher_mes_evenements:
-    path:     /mes_evenements
-    defaults: { _controller: EvenementBundle:Evenement:afficherMesEvenement }
+  path:     /mes_evenements
+  defaults: { _controller: EvenementBundle:Evenement:mesEvenement }
+
 details_evenement:
   path:     /details_evenement
   defaults: { _controller: EvenementBundle:Evenement:detailsEvenement }
@@ -27,12 +32,14 @@ autre_evenement:
 envoyer_ticket:
     path:     /envoyer_ticket
     defaults: { _controller: EvenementBundle:Evenement:envoyerTicket }
+
 envoyer_test:
     path:     /test2
     defaults: { _controller: EvenementBundle:Evenement:test }
 envoyer2_test:
   path:     /test
   defaults: { _controller: EvenementBundle:Evenement:test2 }
+
 pdf_test:
   path:     /testpdf
   defaults: { _controller: EvenementBundle:Evenement:testpdf }

@@ -60,6 +60,18 @@
                             <img class="img-responsive center-block animated zoomInDown delay-1s"
                                  src="{{ asset('Evenement/image/affiches/'~ evenements.Affiche ) }}"/>
                             <br>
+                            <br>
+                            <div align="center">
+                                {{ form_start(formRes) }}
+                                    {% if check == 0 %}
+                                        {{ form_widget(formRes.valider, {'id' : 'acount-btn'}) }}
+                                    {% else %}
+                                        {{ form_widget(formRes.valider , {'disabled' : true}) }}
+                                    {% endif %}
+                                {{ form_end(formRes) }}
+
+                            </div>
+                            <br>
                             <div class="product-widget">
                                 <ul class="list-group">
 

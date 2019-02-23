@@ -5,7 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reservation
+ * ReservationForm
  *
  * @ORM\Table(name="reservation")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\ReservationRepository")

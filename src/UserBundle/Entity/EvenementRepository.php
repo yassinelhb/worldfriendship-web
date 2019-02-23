@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class EvenementRepository extends EntityRepository
 {
 
+
     public function search($data, $page = 0, $max = NULL, $getResult = true)
     {
         $qb = $this->_em->createQueryBuilder();
@@ -29,19 +30,19 @@ class EvenementRepository extends EntityRepository
         }
         if ($query){
             $qb
-                ->andWhere('e.nom like :query')
-                ->orWhere('e.type like :query')
+                ->andWhere('e.nomEvenement like :query')
+                ->orWhere('e.typeEvenement like :query')
                 ->orWhere('e.typeReservation like :query')
-                ->orWhere('e.duree like :query')
-                ->orWhere('e.dateEvent like :query')
-                ->orWhere('e.lieu like :query')
-                ->orWhere('e.nombre like :query')
-                ->orWhere('e.prix like :query')
+                ->orWhere('e.dureeEvenement like :query')
+                ->orWhere('e.dateDebutEvenement like :query')
+                ->orWhere('e.lieuEvenement like :query')
+                ->orWhere('e.capaciteEvenement like :query')
+                ->orWhere('e.prixEvenement like :query')
                 ->setParameter('query', "%".$query."%")
             ;
 
         }
-        $qb->orderBy('e.dateEvenement', 'DESC');
+        $qb->orderBy('e.dateDebutEvenement', 'DESC');
 
         if ($max) {
             $preparedQuery = $qb->getQuery()
