@@ -188,9 +188,11 @@ class EvenementController extends Controller
                  'typeEvenement' => $event->getTypeEvenement(),
                  'capaciteEvenement' => $event->getCapaciteEvenement(),
                  'typeReservation' => $event->getTypeReservation(),
-                 'typeReservation' => $event->getDureeEvenement(),
-                 'typeReservation' => $event->getTypeReservation(),
-                 'typeReservation' => $event->getTypeReservation()
+                 'prixEvenement' => $event->getPrixEvenement(),
+                 'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
+                 'dureeEvenement' => $event->getDureeEvenement(),
+                 'lieuEvenement' => $event->getLieuEvenement()
+
              ];
          }
          return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);

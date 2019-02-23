@@ -33,6 +33,10 @@ class Evenement
      */
     private $idUser;
 
+    /**
+     * @ORM\OneToMany (targetEntity="UserBundle\Entity\Reservation", mappedBy="idEvenement")
+     */
+    private $reservations;
 
     /**
      * @var string
@@ -502,5 +506,48 @@ class Evenement
     public function getDateFinEvenement()
     {
         return $this->dateFinEvenement;
+    }
+
+    /**
+     * Add reservation
+     *
+     * @param \UserBundle\Entity\Reservation $reservation
+     *
+     * @return Evenement
+     */
+    public function addReservation(\UserBundle\Entity\Reservation $reservation)
+    {
+        $this->reservations[] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservation
+     *
+     * @param \UserBundle\Entity\Reservation $reservation
+     */
+    public function removeReservation(\UserBundle\Entity\Reservation $reservation)
+    {
+        $this->reservations->removeElement($reservation);
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get reservations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
     }
 }
