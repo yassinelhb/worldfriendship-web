@@ -10,6 +10,7 @@ namespace UserBundle\Entity;
 
 
 use Doctrine\ORM\EntityRepository;
+use UserBundle\Entity\Evenement;
 
 class UserRepository extends EntityRepository
 {
@@ -19,4 +20,10 @@ class UserRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getNomUtilisateur(){
+        $query=$this->getEntityManager()->createQuery("select u.username from  UserBundle:User u  INNER JOIN UserBundle:Evenement e WITH u.id = e.idUser");
+        return $query->getResult();
+
+
+    }
 }

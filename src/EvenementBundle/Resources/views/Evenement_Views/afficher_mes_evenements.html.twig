@@ -48,6 +48,7 @@
                         <th class="col-md-1 col-xs-1"> Modification </th>
 
                     </tr>
+                    </thead>
                     {% for evenement in evenements %}
                         <tr>
                         <td> {{ evenement.nomEvenement }}</td>
@@ -60,7 +61,7 @@
                                  {{ evenement.prixEvenement }} Dinars
                                  {% endif %}
                             </td>
-                            <td> {{ evenement.dateEvenement|date('Y-m-d H:m')  }}</td>
+                            <td> {{ evenement.dateDebutEvenement|date('Y-m-d H:m')  }}</td>
                             <td> {{ evenement.dureeEvenement }}</td>
                             <td> {{ evenement.lieuEvenement }}</td>
                             <td><a href="{{ path('modifier_evenement', {'id':evenement.id}) }}"><img src="https://img.icons8.com/ios-glyphs/20/000000/services.png">  </a>

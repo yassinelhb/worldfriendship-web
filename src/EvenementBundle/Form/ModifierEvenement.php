@@ -32,7 +32,7 @@ class ModifierEvenement extends AbstractType
                 ]
             )
             ->add('prixEvenement')
-            ->add('dateEvenement',DateTimeType::class, [
+            ->add('dateDebutEvenement',DateTimeType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
                 'html5' => false,

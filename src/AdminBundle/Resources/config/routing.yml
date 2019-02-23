@@ -1,3 +1,7 @@
 admin_homepage:
     path:     /
     defaults: { _controller: AdminBundle:Dashboard:index }
+
+admin_evenement:
+    path:     /gestion_evenement
+    defaults: { _controller: AdminBundle:Dashboard:afficherEvenementAdmin }

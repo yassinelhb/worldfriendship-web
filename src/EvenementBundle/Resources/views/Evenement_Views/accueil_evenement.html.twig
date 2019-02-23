@@ -274,9 +274,9 @@
 
     <section class="services-elements section-padding">
 
-            <div id="banner">
-                <div id="cloud-scroll"></div>
-                <div class="container">
+        <div id="banner">
+            <div id="cloud-scroll"></div>
+            <div class="container">
                 <div style='text-align:center;'>
                     <h1 class="infinite animated pulse delay-1s" id="title">Vivez le Meilleur</h1>
                 </div>
@@ -295,7 +295,7 @@
                                 <div class="event-thumbnail">
                                     <img src="{{ asset('Evenement/image/affiches/'~ i.Affiche ) }}">
                                     <div class="overlay">
-                                        <h2>Date : {{ i.dateEvenement|date('Y-m-d H:m') }}</h2>
+                                        <h2>Date : {{ i.dateDebutEvenement|date('Y-m-d H:m') }}</h2>
                                         <a class="info" href="{{ path('details_evenement',{'id':i.id}) }}">Voir
                                             l'événement</a>
                                     </div>
@@ -304,7 +304,7 @@
                                     <h4>{{ i.nomEvenement }}</h4>
                                     <div class="event-meta-data">
                                         <a href="#" class="event-place">capacité : {{ i.capaciteEvenement }}</a>
-                                        <a href="#" class="event-date">{{ i.dateEvenement|date('Y-m-d H:m') }}</a>
+                                        <a href="#" class="event-date">{{ i.dateDebutEvenement|date('Y-m-d H:m') }}</a>
                                     </div>
                                     <a href="#" class="btn see-more-btn" data-toggle="modal"
                                        data-target="#myModal{{ i.id }}">See Event</a>
@@ -318,7 +318,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title"> l'événement " {{ i.nomEvenement }} " aura lieu
-                                            à {{ i.lieuEvenement }} du {{ i.dateEvenement|date('Y-m-d') }} au
+                                            à {{ i.lieuEvenement }} du {{ i.dateDebutEvenement|date('Y-m-d') }} au
                                             ----- </h4>
                                     </div>
                                     <div class="modal-body">
@@ -369,7 +369,8 @@
                 </div>
                 <div class="row">
                     <div class="text-center">
-                        <a href="{{ path('autre_evenement') }}" class="btn-default btn-big btn-fill"> Afficher d'autres événements </a>
+                        <a href="{{ path('autre_evenement') }}" class="btn-default btn-big btn-fill"> Afficher d'autres
+                            événements </a>
                     </div>
                 </div>
             </div>
@@ -390,24 +391,31 @@
             <div class="item active">
                 <img src="{{ asset('Evenement/image/carousel/1.jpg') }}" alt="">
                 <div class="carousel-caption">
-
                 </div>
             </div>
             <div class="item">
                 <img src="{{ asset('Evenement/image/carousel/2.jpg') }}" alt="">
                 <div class="carousel-caption">
-
                 </div>
             </div>
             <div class="item">
                 <img src="{{ asset('Evenement/image/carousel/3.jpg') }}" alt="">
                 <div class="carousel-caption">
-
+                </div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('Evenement/image/carousel/5.jpg') }}" alt="">
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('Evenement/image/carousel/6.jpg') }}" alt="">
+                <div class="carousel-caption">
                 </div>
             </div>
         </div>
-
     </div>
+
 
     <!-- END Carousel -->
 

@@ -32,7 +32,7 @@ class AjouterEvenement extends AbstractType
                 ]
             )
             ->add('prixEvenement')
-            ->add('dateEvenement',DateTimeType::class, ['data' => new \DateTime('now'),
+            ->add('dateDebutEvenement',DateTimeType::class, ['data' => new \DateTime('now'),
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
                 'html5' => false,

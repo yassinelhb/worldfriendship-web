@@ -28,8 +28,11 @@ envoyer_ticket:
     path:     /envoyer_ticket
     defaults: { _controller: EvenementBundle:Evenement:envoyerTicket }
 envoyer_test:
-    path:     /test
+    path:     /test2
     defaults: { _controller: EvenementBundle:Evenement:test }
+envoyer2_test:
+  path:     /test
+  defaults: { _controller: EvenementBundle:Evenement:test2 }
 pdf_test:
   path:     /testpdf
   defaults: { _controller: EvenementBundle:Evenement:testpdf }

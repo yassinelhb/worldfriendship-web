@@ -119,6 +119,8 @@ class EvenementController extends Controller
 
     }
 
+
+
     public function reservationEvenementAction()
     {
     return $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig',['tag' => "Mes Evénements"]);
@@ -152,7 +154,7 @@ class EvenementController extends Controller
 
 
 
-    /* public function testAction(Request $request)
+    public function testAction(Request $request)
      {
          $length = $request->get('length');
          $length = $length && ($length!=-1)?$length:0;
@@ -182,18 +184,28 @@ class EvenementController extends Controller
          foreach ($evenements as $event) {
 
              $output['data'][] = [
-                 'nomEvenement' => $event->getNomEvenement()
+                 'nomEvenement' => $event->getNomEvenement(),
+                 'typeEvenement' => $event->getTypeEvenement(),
+                 'capaciteEvenement' => $event->getCapaciteEvenement(),
+                 'typeReservation' => $event->getTypeReservation(),
+                 'typeReservation' => $event->getDureeEvenement(),
+                 'typeReservation' => $event->getTypeReservation(),
+                 'typeReservation' => $event->getTypeReservation()
              ];
          }
-       return new JsonResponse($output);
+         return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
 
-         //  return $this->render('@Evenement/Evenement_Views/test.html.twig',['data_evenement' => json_encode($output)]);
-        //return  $this->render('@Evenement/Evenement_Views/test.html.twig', ['tag' => 'Evenements','users'=> $users , 'evenements' => $evenements]);
+        //  return $this->render('@Evenement/Evenement_Views/test.html.twig',['data_evenement' => json_encode($output)]);
+       // return  $this->render('@Evenement/Evenement_Views/test.html.twig', ['evenements' => $output]);
         // return new Response("hello world");
            }
- */
-/*
-    public function testAction(Request $request)
+
+public function test2Action()
+{
+    return  $this->render('@Evenement/Evenement_Views/test.html.twig', []);
+}
+
+/* public function testAction(Request $request)
     {
         $length = $request->get('length');
         $length = $length && ($length != -1) ? $length : 0;

@@ -67,9 +67,21 @@ class Evenement
      *     value = "now",
      *     message = "Veuillez choisir une date valide."
      * )
-     * @ORM\Column(name="date_evenement", type="datetime", nullable=false)
+     * @ORM\Column(name="date_debut_evenement", type="datetime", nullable=false)
      */
-    private $dateEvenement;
+    private $dateDebutEvenement;
+
+
+    /**
+     * @var \DateTime
+     * @Assert\GreaterThanOrEqual(
+     *     value = "now",
+     *     message = "Veuillez choisir une date valide."
+     * )
+     * @ORM\Column(name="date_fin_evenement", type="datetime", nullable=false)
+     */
+    private $dateFinEvenement;
+
 
     /**
      * @var string
@@ -179,8 +191,6 @@ class Evenement
     }
 
 
-
-
     /**
      * Set nomEvenement
      *
@@ -251,30 +261,6 @@ class Evenement
     public function getTypeReservation()
     {
         return $this->typeReservation;
-    }
-
-    /**
-     * Set dateEvenement
-     *
-     * @param string $dateEvenement
-     *
-     * @return Evenement
-     */
-    public function setDateEvenement($dateEvenement)
-    {
-        $this->dateEvenement = $dateEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEvenement
-     *
-     * @return string
-     */
-    public function getDateEvenement()
-    {
-        return $this->dateEvenement;
     }
 
 
@@ -468,4 +454,53 @@ class Evenement
         return $this->afficheFile;
     }
 
+
+    /**
+     * Set dateDebutEvenement
+     *
+     * @param \DateTime $dateDebutEvenement
+     *
+     * @return Evenement
+     */
+    public function setDateDebutEvenement($dateDebutEvenement)
+    {
+        $this->dateDebutEvenement = $dateDebutEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDebutEvenement
+     *
+     * @return \DateTime
+     */
+    public function getDateDebutEvenement()
+    {
+        return $this->dateDebutEvenement;
+    }
+
+
+    /**
+     * Set dateFinEvenement
+     *
+     * @param \DateTime $dateFinEvenement
+     *
+     * @return Evenement
+     */
+    public function setDateFinEvenement($dateFinEvenement)
+    {
+        $this->dateFinEvenement = $dateFinEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFinEvenement
+     *
+     * @return \DateTime
+     */
+    public function getDateFinEvenement()
+    {
+        return $this->dateFinEvenement;
+    }
 }

@@ -3,12 +3,16 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Evenement
  *
+ * @ORM\Entity(repositoryClass="UserBundle\Entity\EvenementRepository")
  * @ORM\Table(name="evenement")
- * @ORM\Entity(repositoryClass="UserBundle\Repository\EvenementRepository")
+ * @Vich\Uploadable
  */
 class Evenement
 {
@@ -24,16 +28,11 @@ class Evenement
     /**
      * @var int
      *
-     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\ManyToOne (targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_categorie", type="integer")
-     */
-    private $idCategorie;
 
     /**
      * @var string
@@ -44,36 +43,65 @@ class Evenement
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="type_evenement", type="string", length=255)
+     * @Assert\Choice(
+     *     choices = { "Associatif", "Culturel", "Autres" },
+     *     message = "Veuillez choisir un type pour votre événement."
+     * )
+     * @ORM\Column(name="Type", type="string", length=255, nullable=false)
      */
     private $typeEvenement;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="type_reservation", type="string", length=255)
+     * @Assert\Choice(
+     *     choices = { "Gratuite", "Payante" },
+     *     message = "Veuillez choisir un type de réservation."
+     * )
+     * @ORM\Column(name="type_reservation", type="string", length=255, nullable=false)
      */
     private $typeReservation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="date_evenement", type="string", length=255)
+     * @var \DateTime
+     * @Assert\GreaterThanOrEqual(
+     *     value = "now",
+     *     message = "Veuillez choisir une date valide."
+     * )
+     * @ORM\Column(name="date_debut_evenement", type="datetime", nullable=false)
      */
-    private $dateEvenement;
+    private $dateDebutEvenement;
+
+
+    /**
+     * @var \DateTime
+     * @Assert\GreaterThanOrEqual(
+     *     value = "now",
+     *     message = "Veuillez choisir une date valide."
+     * )
+     * @ORM\Column(name="date_fin_evenement", type="datetime", nullable=false)
+     */
+    private $dateFinEvenement;
+
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="duree_evenement", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z0-9 ]+$/",
+     *     match=true,
+     *     message="Veuillez un choisir une durée valide."
+     * )
+     * @ORM\Column(name="duree_evenement", type="string", length=255, nullable=false)
      */
     private $dureeEvenement;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="lieu_evenement", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z0-9 ]+$/",
+     *     match=true,
+     *     message="Veuillez un choisir une localisation valide"
+     * )
+     * @ORM\Column(name="lieu_evenement", type="string", length=255, nullable=false)
      */
     private $lieuEvenement;
 
@@ -86,10 +114,28 @@ class Evenement
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description_evenement", type="string", length=255)
+     * @Assert\Length(max=255)
+     * @ORM\Column(name="description_evenement", type="string", length=255, nullable=false)
      */
     private $descriptionEvenement;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Affiche", type="string", length=255, nullable=false)
+     */
+    private $affiche;
+
+    /**
+     * @Assert\Image(
+     *     maxSize="5M",
+     *     mimeTypesMessage = "Veuillez uploader un fichier de type Image"
+     * )
+     * @Vich\UploadableField(mapping="event_affiche", fileNameProperty="affiche")
+     */
+    private $afficheFile;
+
+    private $updatedAt;
+
 
     /**
      * @var string
@@ -98,18 +144,14 @@ class Evenement
      */
     private $etatEvenement;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="affiche_evenement", type="string", length=255)
-     */
-    private $afficheEvenement;
-
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="prix_evenement", type="integer")
+     * @var integer
+     * @Assert\GreaterThanOrEqual(
+     *     value = "1",
+     *     message = "Veuillez choisir un entier valide."
+     * )
+     * @ORM\Column(name="prix_evenement", type="integer", nullable=true)
      */
     private $prixEvenement;
 
@@ -148,29 +190,6 @@ class Evenement
         return $this->idUser;
     }
 
-    /**
-     * Set idCategorie
-     *
-     * @param integer $idCategorie
-     *
-     * @return Evenement
-     */
-    public function setIdCategorie($idCategorie)
-    {
-        $this->idCategorie = $idCategorie;
-
-        return $this;
-    }
-
-    /**
-     * Get idCategorie
-     *
-     * @return int
-     */
-    public function getIdCategorie()
-    {
-        return $this->idCategorie;
-    }
 
     /**
      * Set nomEvenement
@@ -244,31 +263,6 @@ class Evenement
         return $this->typeReservation;
     }
 
-    /**
-     * Set dateEvenement
-     *
-     * @param string $dateEvenement
-     *
-     * @return Evenement
-     */
-    public function setDateEvenement($dateEvenement)
-    {
-        $this->dateEvenement = $dateEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEvenement
-     *
-     * @return string
-     */
-    public function getDateEvenement()
-    {
-        return $this->dateEvenement;
-    }
-
-
 
     /**
      * Set lieuEvenement
@@ -293,7 +287,6 @@ class Evenement
     {
         return $this->lieuEvenement;
     }
-
 
 
     /**
@@ -415,4 +408,75 @@ class Evenement
     {
         return $this->capaciteEvenement;
     }
+
+    /**
+     * Set affiche
+     *
+     * @param string $affiche
+     *
+     * @return Evenement
+     */
+    public function setAffiche($affiche)
+    {
+        $this->affiche = $affiche;
+
+        return $this;
+    }
+
+    /**
+     * Get affiche
+     *
+     * @return string
+     */
+    public function getAffiche()
+    {
+        return $this->affiche;
+    }
+
+
+    public function setAfficheFile(File $affiche = null)
+    {
+        $this->afficheFile = $affiche;
+
+        if ($affiche) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            try {
+                $this->updatedAt = new \DateTimeImmutable();
+            } catch (\Exception $e) {
+            }
+        }
+
+    }
+
+    public function getAfficheFile()
+    {
+        return $this->afficheFile;
+    }
+
+
+    /**
+     * Set dateDebutEvenement
+     *
+     * @param \DateTime $dateDebutEvenement
+     *
+     * @return Evenement
+     */
+    public function setDateDebutEvenement($dateDebutEvenement)
+    {
+        $this->dateDebutEvenement = $dateDebutEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDebutEvenement
+     *
+     * @return \DateTime
+     */
+    public function getDateDebutEvenement()
+    {
+        return $this->dateDebutEvenement;
+    }
+
 }
