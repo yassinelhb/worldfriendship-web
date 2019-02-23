@@ -115,7 +115,7 @@ class EvenementController extends Controller
                     $evenements->addReservation($reservation);
                     $em->persist($reservation);
                     $em->flush();
-                    return $this->redirectToRoute('reservation_evenement');
+                    return $this->redirectToRoute('afficher_mes_reservation');
                 }
 
 
@@ -157,10 +157,6 @@ class EvenementController extends Controller
 */
 
 
-    public function reservationEvenementAction()
-    {
-    return $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig',['tag' => "Mes Evénements"]);
-    }
 
     public function autreEvenementAction()
     {
@@ -201,32 +197,31 @@ class EvenementController extends Controller
             'query' => @$search['value'],
             'user' => @$user,
         ];
-        $em = $this->getDoctrine()->getManager();
-        $evenements = $em->getRepository("UserBundle:Evenement")->search(
+
+        $evenements = $this->getDoctrine()->getRepository('UserBundle:Evenement')->search(
             $filters, $start, $length
         );
-        $users = $em->getRepository("UserBundle:User")->findBy(array('id' => $user), array());
 
         $output = array(
             'data' => array(),
             'recordsFiltered' => count($this->getDoctrine()->getRepository('UserBundle:Evenement')->search($filters, 0, false)),
             'recordsTotal' => count($this->getDoctrine()->getRepository('UserBundle:Evenement')->search(array(), 0, false))
         );
-        foreach ($evenements as $event) {
+        foreach ($evenements as $evenement) {
 
             $output['data'][] = [
-                'nomEvenement' => $event->getNomEvenement(),
-                'typeEvenement' => $event->getTypeEvenement(),
-                'capaciteEvenement' => $event->getCapaciteEvenement(),
-                'typeReservation' => $event->getTypeReservation(),
-                'prixEvenement' => $event->getPrixEvenement(),
-                'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
-                'dureeEvenement' => $event->getDureeEvenement(),
-                'lieuEvenement' => $event->getLieuEvenement(),
-                'Affiche' => '<img class="resize" src="../Evenement/image/affiches/'.$event->getAffiche().'"/>',
-                'Details' => "<a href=".$this->generateUrl('details_evenement',['id' => $event->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios/26/000000/show-property.png\"> </a>",
-                'Modifier' => "<a href=".$this->generateUrl('modifier_evenement',['id' => $event->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>",
-                'Supprimer' => "<a href=".$this->generateUrl('supprimer_evenement',['id' => $event->getID()])."><img src=\"https://img.icons8.com/material/26/000000/trash.png\"></a>"
+                'nomEvenement' => $evenement->getNomEvenement(),
+                'typeEvenement' => $evenement->getTypeEvenement(),
+                'capaciteEvenement' => $evenement->getCapaciteEvenement(),
+                'typeReservation' => $evenement->getTypeReservation(),
+                'prixEvenement' => $evenement->getPrixEvenement(),
+                'dateDebutEvenement' => $evenement->getDateDebutEvenement()->format('Y-m-d H:i'),
+                'dureeEvenement' => $evenement->getDureeEvenement(),
+                'lieuEvenement' => $evenement->getLieuEvenement(),
+                'Affiche' => '<img class="resize" src="../Evenement/image/affiches/'.$evenement->getAffiche().'"/>',
+                'Details' => "<a href=".$this->generateUrl('details_evenement',['id' => $evenement->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios/26/000000/show-property.png\"> </a>",
+                'Modifier' => "<a href=".$this->generateUrl('modifier_evenement',['id' => $evenement->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>",
+                'Supprimer' => "<a href=".$this->generateUrl('supprimer_evenement',['id' => $evenement->getID()])."><img src=\"https://img.icons8.com/material/26/000000/trash.png\"></a>"
             ];
 
         }
@@ -235,9 +230,62 @@ class EvenementController extends Controller
 
     public function mesEvenementAction()
     {
-        return  $this->render('@Evenement/Evenement_Views/mes_evenements.html.twig', []);
+        return  $this->render('@Evenement/Evenement_Views/mes_evenements.html.twig',[]);
     }
 
+
+    public function mesReservationDonneesAction(Request $request)
+    {
+        $length = $request->get('length');
+        $length = $length && ($length!=-1)?$length:0;
+
+        $start = $request->get('start');
+        $start = $length?($start && ($start!=-1)?$start:0)/$length:0;
+
+        $search = $request->get('search');
+
+        $user = $this->getUser();
+        $filters = [
+            'query' => @$search['value'],
+            'user' => @$user,
+        ];
+        $em = $this->getDoctrine()->getManager();
+        $evenements = $em->getRepository("UserBundle:Evenement")->searchReservation(
+            $filters, $start, $length
+        );
+
+
+        $output = array(
+            'data' => array(),
+            'recordsFiltered' => count($this->getDoctrine()->getRepository('UserBundle:Evenement')->searchReservation($filters, 0, false)),
+            'recordsTotal' => count($this->getDoctrine()->getRepository('UserBundle:Evenement')->searchReservation(array(), 0, false))
+        );
+        foreach ($evenements as $event) {
+            $reservations = $event->getReservations();
+            foreach ($reservations as $reservation) {
+
+
+            $output['data'][] = [
+                'nomEvenement' => $event->getNomEvenement(),
+                'etat' => $reservation->getEtat(),
+                'typeEvenement' => $event->getTypeEvenement(),
+                'capaciteEvenement' => $event->getCapaciteEvenement(),
+                'typeReservation' => $event->getTypeReservation(),
+                'prixEvenement' => $event->getPrixEvenement(),
+                'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
+                'dureeEvenement' => $event->getDureeEvenement(),
+                'lieuEvenement' => $event->getLieuEvenement(),
+                'Affiche' => '<img class="resize" src="../Evenement/image/affiches/'.$event->getAffiche().'"/>',
+            ];
+            }
+        }
+        return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
+    }
+
+    public function mesReservationAction()
+    {
+        return $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig',[]);
+    }
 
 
     public function testAction(Request $request)

@@ -1,8 +1,73 @@
 {% extends '@Evenement/Evenement_Views/base_evenement.html.twig' %}
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset ('Evenement/css/jquery.dataTables.min.css') }}">
+    <style>
+        .resize {
+            height: 85px !important;
+            width: 85px !important;
+        }
+        .table {
+            width: 100% !important;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-<h1>mes réservation</h1>
+
+
+    <div class="row">
+
+        <div class="col-lg-10 col-lg-offset-1">
+            <table id="myTable" style="width: 100% !important;"
+                   class="table table-bordered table-condensed table-hover table-striped display responsive nowrap">
+                <thead>
+                <tr>
+                    <th class="col-md-1 col-xs-1"> Titre</th>
+                    <th class="col-md-1 col-xs-1"> Etat</th>
+                    <th class="col-md-1 col-xs-1"> Type</th>
+                    <th class="col-md-1 col-xs-1"> Capacité</th>
+                    <th class="col-md-1 col-xs-1"> Type de réservation</th>
+                    <th class="col-md-1 col-xs-1"> Prix</th>
+                    <th class="col-md-1 col-xs-1"> Date </th>
+                    <th class="col-md-1 col-xs-1"> Durée</th>
+                    <th class="col-md-1 col-xs-1"> Localisation </th>
+                    <th class="col-md-1 col-xs-1"> Affiche </th>
+
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+
+
 {% endblock %}
 {% block javascripts %}
+    <script type="text/javascript" src="{{ asset ('Evenement/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('Evenement/js/dataTables.responsive.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').dataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ path('mes_reservation_donnees') }}",
+                "sAjaxDataProp": "data",
+                "pageLength": 5,
+                columns: [
+                    {"data": "nomEvenement"},
+                    {"data": "etat"},
+                    {"data": "typeEvenement"},
+                    {"data": "capaciteEvenement"},
+                    {"data": "typeReservation"},
+                    {"data": "prixEvenement"},
+                    {"data": "dateDebutEvenement"},
+                    {"data": "dureeEvenement"},
+                    {"data": "lieuEvenement"},
+                    {"data": "Affiche"},
+
+                ],
+                "retrieve": true
+            });
+        });
+    </script>
 {% endblock %}
