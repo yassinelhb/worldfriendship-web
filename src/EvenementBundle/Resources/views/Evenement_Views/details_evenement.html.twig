@@ -35,7 +35,32 @@
             -moz-transition: 0.5s all;
             -o-transition: 0.5s all;
         }
+        #acount-btn-r {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+            display: inline-block;
+            border-radius: .25rem;
+            background: #114E8E;
+            padding: 0.6em 2em;
+            font-size: 1em;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            margin-bottom: 1em;
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+            float: right;
+        }
 
+        .not-active {
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+            color: black;
+        }
     </style>
 {% endblock %}
 
@@ -100,7 +125,11 @@
                                                 class="badge">{{ evenements.descriptionEvenement }}</span> Description
                                     </li>
                                     <li class="list-group-item">
-                                        <a id="acount-btn" href="{{ path('pdf_test',{'id':evenements.id}) }}"> Telecharger les détails en pdf </a>
+                                        <a id="acount-btn" href="{{ path('pdf_evenement',{'id':evenements.id}) }}"> Telecharger les détails en pdf </a>
+
+                                        <a  id="acount-btn-r" href="{{  path('envoyer_ticket') }}" {% if check == 0 %} class="not-active"  {% endif %}> Je veux recevoir mon ticket </a>
+                                        {#<a  id="acount-btn-r" href="{{  path('envoyer_ticket') }}" {% if check == 0 %} disabled="true"  {% endif %}> Je veux recevoir mon ticket </a>#}
+
                                     </li>
 
                                     {# <li class="list-group-item"> <span class="badge">{{ dispo }}</span> Places disponibles </li>#}

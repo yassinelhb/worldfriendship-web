@@ -15,6 +15,14 @@ modifier_evenement:
 supprimer_evenement:
   path:     /supprimer_evenement
   defaults: { _controller: EvenementBundle:Evenement:supprimerEvenement }
+##############################################################################
+pdf_evenement:
+  path:     /pdf
+  defaults: { _controller: EvenementBundle:Evenement:pdf }
+
+details_evenement:
+  path:     /details_evenement
+  defaults: { _controller: EvenementBundle:Evenement:detailsEvenement }
 
 #mes evenement
 mes_evenements_donnees:
@@ -23,6 +31,7 @@ mes_evenements_donnees:
 afficher_mes_evenements:
   path:     /mes_evenements
   defaults: { _controller: EvenementBundle:Evenement:mesEvenement }
+
 #mes reservation
 mes_reservation_donnees:
   path:     /mes_reservation_donnees
@@ -31,9 +40,6 @@ afficher_mes_reservation:
   path:     /mes_reservation
   defaults: { _controller: EvenementBundle:Evenement:mesReservation }
 
-details_evenement:
-  path:     /details_evenement
-  defaults: { _controller: EvenementBundle:Evenement:detailsEvenement }
 autre_evenement:
   path:     /autre_evenement
   defaults: { _controller: EvenementBundle:Evenement:autreEvenement }
@@ -49,6 +55,3 @@ envoyer2_test:
   path:     /test
   defaults: { _controller: EvenementBundle:Evenement:test2 }
 
-pdf_test:
-  path:     /testpdf
-  defaults: { _controller: EvenementBundle:Evenement:testpdf }

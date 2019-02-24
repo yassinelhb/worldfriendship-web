@@ -3,8 +3,8 @@
     <link rel="stylesheet" href="{{ asset ('Evenement/css/jquery.dataTables.min.css') }}">
     <style>
         .resize {
-            height: 85px !important;
-            width: 85px !important;
+            height: 90px !important;
+            width: 105px !important;
         }
         .table {
             width: 100% !important;
@@ -13,7 +13,13 @@
 {% endblock %}
 {% block content %}
 
-
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                <p align="center">{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="row">
 
         <div class="col-lg-10 col-lg-offset-1">
@@ -30,9 +36,8 @@
                     <th class="col-md-1 col-xs-1"> Durée</th>
                     <th class="col-md-1 col-xs-1"> Localisation </th>
                     <th class="col-md-1 col-xs-1"> Affiche</th>
-                    <th class="col-md-1 col-xs-1"> Détails </th>
-                    <th class="col-md-1 col-xs-1"> Modifier </th>
-                    <th class="col-md-1 col-xs-1"> Supprimer </th>
+                    <th class="col-md-1 col-xs-1"> Action </th>
+
 
                 </tr>
                 </thead>
@@ -65,9 +70,8 @@
                     {"data": "dureeEvenement"},
                     {"data": "lieuEvenement"},
                     {"data": "Affiche"},
-                    {"data" : "Details"},
-                    {"data" : "Modifier"},
-                    {"data" : "Supprimer"},
+                    {"data" : "Action"},
+
                 ],
                 "retrieve": true
             });

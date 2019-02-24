@@ -219,9 +219,9 @@ class EvenementController extends Controller
                 'dureeEvenement' => $evenement->getDureeEvenement(),
                 'lieuEvenement' => $evenement->getLieuEvenement(),
                 'Affiche' => '<img class="resize" src="../Evenement/image/affiches/'.$evenement->getAffiche().'"/>',
-                'Details' => "<a href=".$this->generateUrl('details_evenement',['id' => $evenement->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios/26/000000/show-property.png\"> </a>",
-                'Modifier' => "<a href=".$this->generateUrl('modifier_evenement',['id' => $evenement->getID()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>",
-                'Supprimer' => "<a href=".$this->generateUrl('supprimer_evenement',['id' => $evenement->getID()])."><img src=\"https://img.icons8.com/material/26/000000/trash.png\"></a>"
+                'Action' => "<a href=".$this->generateUrl('details_evenement',['id' => $evenement->getId()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios/26/000000/show-property.png\"> </a>
+              <a href=".$this->generateUrl('modifier_evenement',['id' => $evenement->getId()])." target=\"_blank\"><img src=\"https://img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>
+                <a href=".$this->generateUrl('supprimer_evenement',['id' => $evenement->getId()])."><img src=\"https://img.icons8.com/material/26/000000/trash.png\"></a>"
             ];
 
         }
@@ -263,20 +263,21 @@ class EvenementController extends Controller
         foreach ($evenements as $event) {
             $reservations = $event->getReservations();
             foreach ($reservations as $reservation) {
+                if ($reservation->getIdUser() == $user) {
 
-
-            $output['data'][] = [
-                'nomEvenement' => $event->getNomEvenement(),
-                'etat' => $reservation->getEtat(),
-                'typeEvenement' => $event->getTypeEvenement(),
-                'capaciteEvenement' => $event->getCapaciteEvenement(),
-                'typeReservation' => $event->getTypeReservation(),
-                'prixEvenement' => $event->getPrixEvenement(),
-                'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
-                'dureeEvenement' => $event->getDureeEvenement(),
-                'lieuEvenement' => $event->getLieuEvenement(),
-                'Affiche' => '<img class="resize" src="../Evenement/image/affiches/'.$event->getAffiche().'"/>',
-            ];
+                    $output['data'][] = [
+                        'nomEvenement' => $event->getNomEvenement(),
+                        'etat' => $reservation->getEtat(),
+                        'typeEvenement' => $event->getTypeEvenement(),
+                        'capaciteEvenement' => $event->getCapaciteEvenement(),
+                        'typeReservation' => $event->getTypeReservation(),
+                        'prixEvenement' => $event->getPrixEvenement(),
+                        'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
+                        'dureeEvenement' => $event->getDureeEvenement(),
+                        'lieuEvenement' => $event->getLieuEvenement(),
+                        'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
+                    ];
+                }
             }
         }
         return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
@@ -339,10 +340,10 @@ class EvenementController extends Controller
         // return new Response("hello world");
            }
 
-public function test2Action()
-{
+    public function test2Action()
+    {
     return  $this->render('@Evenement/Evenement_Views/test.html.twig', []);
-}
+    }
 
 /* public function testAction(Request $request)
     {
@@ -380,7 +381,7 @@ public function test2Action()
         return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
     }
 */
-    public function testpdfAction(Request $request)
+    public function pdfAction(Request $request)
     {
         $user = $this->getUser();
         $id = $request->get('id');
