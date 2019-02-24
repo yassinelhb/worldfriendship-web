@@ -32,6 +32,7 @@ afficher_mes_evenements:
   path:     /mes_evenements
   defaults: { _controller: EvenementBundle:Evenement:mesEvenement }
 
+
 #mes reservation
 mes_reservation_donnees:
   path:     /mes_reservation_donnees
@@ -39,6 +40,13 @@ mes_reservation_donnees:
 afficher_mes_reservation:
   path:     /mes_reservation
   defaults: { _controller: EvenementBundle:Evenement:mesReservation }
+annuler_reservation:
+  path:     /annuler_reservation
+  defaults: { _controller: EvenementBundle:Evenement:annulerReservation }
+reconfirmer_reservation:
+  path:     /reconfirmer_reservation
+  defaults: { _controller: EvenementBundle:Evenement:reconfirmerReservation }
+
 
 autre_evenement:
   path:     /autre_evenement

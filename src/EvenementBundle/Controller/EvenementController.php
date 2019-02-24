@@ -263,7 +263,7 @@ class EvenementController extends Controller
         foreach ($evenements as $event) {
             $reservations = $event->getReservations();
             foreach ($reservations as $reservation) {
-                if ($reservation->getIdUser() == $user) {
+                if ($reservation->getIdUser() == $user && $reservation->getEtat() == "Confirmé" ) {
 
                     $output['data'][] = [
                         'nomEvenement' => $event->getNomEvenement(),
@@ -276,8 +276,26 @@ class EvenementController extends Controller
                         'dureeEvenement' => $event->getDureeEvenement(),
                         'lieuEvenement' => $event->getLieuEvenement(),
                         'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
+                        'Action' => "<a href=" . $this->generateUrl('annuler_reservation', ['id' => $reservation->getIdReservation()]) . " target=\"_blank\">annuler</a>"
                     ];
                 }
+                else   if ($reservation->getIdUser() == $user && $reservation->getEtat() == "Annulé" ) {
+
+                    $output['data'][] = [
+                        'nomEvenement' => $event->getNomEvenement(),
+                        'etat' => $reservation->getEtat(),
+                        'typeEvenement' => $event->getTypeEvenement(),
+                        'capaciteEvenement' => $event->getCapaciteEvenement(),
+                        'typeReservation' => $event->getTypeReservation(),
+                        'prixEvenement' => $event->getPrixEvenement(),
+                        'dateDebutEvenement' => $event->getDateDebutEvenement()->format('Y-m-d H:i'),
+                        'dureeEvenement' => $event->getDureeEvenement(),
+                        'lieuEvenement' => $event->getLieuEvenement(),
+                        'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
+                        'Action' => "<a href=" . $this->generateUrl('reconfirmer_reservation', ['id' => $reservation->getIdReservation()]) . " target=\"_blank\">reconfirmer</a>"
+                    ];
+                }
+
             }
         }
         return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
@@ -286,6 +304,42 @@ class EvenementController extends Controller
     public function mesReservationAction()
     {
         return $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig',[]);
+    }
+
+    public function annulerReservationAction(Request $request){
+        $user = $this->getUser();
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
+        if ($user !== null && $reservation->getIdUser() == $user ) {
+            $reservation->setEtat("Annulé");
+            $em->persist($reservation);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                'Annulation avec succès!'
+            );
+        }
+
+        return  $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig');
+    }
+
+    public function reconfirmerReservationAction(Request $request){
+        $user = $this->getUser();
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
+        if ($user !== null && $reservation->getIdUser() == $user ) {
+            $reservation->setEtat("Confirmé");
+            $em->persist($reservation);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                'Reconfirmation avec succès!'
+            );
+        }
+
+        return  $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig');
     }
 
 
