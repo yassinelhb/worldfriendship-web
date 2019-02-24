@@ -1,5 +1,6 @@
 {% extends '@Evenement/Evenement_Views/base_evenement.html.twig' %}
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset ('Evenement/css/comment.css') }}">
     <style>
 
         img {
@@ -56,11 +57,13 @@
         }
 
         .not-active {
-            pointer-events: none;
+            pointer-evenementss: none;
             cursor: default;
             text-decoration: none;
             color: black;
         }
+
+
     </style>
 {% endblock %}
 
@@ -85,8 +88,8 @@
                             <img class="img-responsive center-block animated zoomInDown delay-1s"
                                  src="{{ asset('Evenement/image/affiches/'~ evenements.Affiche ) }}"/>
                             <br>
-                            <br>
                             <div align="center">
+                                {% form_theme formRes 'bootstrap_3_layout.html.twig' %}
                                 {{ form_start(formRes) }}
                                     {% if check == 0 %}
                                         {{ form_widget(formRes.valider, {'id' : 'acount-btn'}) }}
@@ -141,6 +144,51 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-10 col-lg-offset-1">
+
+                <div class="comment-wrap">
+                    <div class="photo">
+                        <div class="avatar"
+                             style="background-image: url('https://img.icons8.com/color/48/000000/user-male.png')"></div>
+                    </div>
+                    <div class="comment-block">
+                        {% form_theme formCom 'bootstrap_3_layout.html.twig' %}
+                        {{ form_start(formCom) }}
+                        {{ form_widget(formCom.contenu) }}
+                        <br>
+                        {{ form_widget(formCom.valider)}}
+                        {{ form_end(formCom) }}
+
+
+                    </div>
+                </div>
+
+                {% if evenements.commentaires %}
+                    {% for commentaire in evenements.commentaires %}
+                        <div class="comment-wrap">
+                            <div class="photo">
+                                <div class="avatar"
+                                     style="background-image: url('https://img.icons8.com/color/48/000000/user-male.png')"></div>
+                            </div>
+                            <div class="comment-block">
+                                <p class="comment-text">{{ commentaire.contenu }}</p>
+                                <div class="bottom-comment">
+                                    <div class="comment-date">Ajouter Par : {{ commentaire.idUser.username }}  le  {{ commentaire.dateCommentaire | date(' d F Y H:i') }}</div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+            </div>
+
+
+
     </div>
 
 {% endblock %}

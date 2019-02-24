@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use UserBundle\Entity\Commentaire;
 use UserBundle\Entity\Evenement;
 use EvenementBundle\Form\AjouterEvenement;
 use UserBundle\Entity\User;
@@ -14,6 +15,7 @@ use UserBundle\Entity\Reservation;
 use UserBundle\Entity\EvenementRepository;
 use EvenementBundle\Form\ModifierEvenement;
 use EvenementBundle\Form\ReservationForm;
+use EvenementBundle\Form\CommentaireForm;
 
 
 class EvenementController extends Controller
@@ -89,6 +91,9 @@ class EvenementController extends Controller
         $formRes = $this->createForm(ReservationForm::class,$reservation);
         $formRes->handleRequest($request);
 
+        $commentaire = new Commentaire();
+        $formCom = $this->createForm(CommentaireForm::class, $commentaire);
+        $formCom->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
         $evenements = $em->getRepository('UserBundle:Evenement')->find($id);
@@ -118,9 +123,21 @@ class EvenementController extends Controller
                     return $this->redirectToRoute('afficher_mes_reservation');
                 }
 
+        // Partie commentaires
+        if ($formCom->isValid() && $request->request->has($formCom->getName())) {
+
+            $commentaire->setIdEvenement($evenements);
+            $commentaire->setIdUser($user);
+            $commentaire->setEtatCommentaire("OK");
+            $evenements->addCommentaire($commentaire);
+            $em->persist($commentaire);
+            $em->flush();
+        }
+
 
             return $this->render('@Evenement/Evenement_Views/details_evenement.html.twig',
-                ['evenements' => $evenements,'tag' => 'détails événement','formRes'=> $formRes->createView() , 'check' => $check]);
+                ['evenements' => $evenements,'tag' => 'détails événement','formRes'=> $formRes->createView() , 'check' => $check
+                , 'formCom' => $formCom->createView(),]);
 
     }
 
@@ -276,7 +293,7 @@ class EvenementController extends Controller
                         'dureeEvenement' => $event->getDureeEvenement(),
                         'lieuEvenement' => $event->getLieuEvenement(),
                         'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
-                        'Action' => "<a href=" . $this->generateUrl('annuler_reservation', ['id' => $reservation->getIdReservation()]) . " target=\"_blank\">annuler</a>"
+                        'Action' => "<a href=" . $this->generateUrl('annuler_reservation', ['id' => $reservation->getIdReservation()]) . ">annuler</a>"
                     ];
                 }
                 else   if ($reservation->getIdUser() == $user && $reservation->getEtat() == "Annulé" ) {
@@ -292,7 +309,7 @@ class EvenementController extends Controller
                         'dureeEvenement' => $event->getDureeEvenement(),
                         'lieuEvenement' => $event->getLieuEvenement(),
                         'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
-                        'Action' => "<a href=" . $this->generateUrl('reconfirmer_reservation', ['id' => $reservation->getIdReservation()]) . " target=\"_blank\">reconfirmer</a>"
+                        'Action' => "<a href=" . $this->generateUrl('reconfirmer_reservation', ['id' => $reservation->getIdReservation()]) . ">reconfirmer</a>"
                     ];
                 }
 

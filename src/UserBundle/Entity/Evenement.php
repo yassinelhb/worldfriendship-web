@@ -39,6 +39,11 @@ class Evenement
     private $reservations;
 
     /**
+     * @ORM\OneToMany (targetEntity="UserBundle\Entity\Commentaire", mappedBy="idEvenement")
+     */
+    private $commentaires;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nom_evenement", type="string", length=255)
@@ -82,7 +87,7 @@ class Evenement
      *     value = "now",
      *     message = "Veuillez choisir une date valide."
      * )
-     * @ORM\Column(name="date_fin_evenement", type="datetime", nullable=false)
+     * @ORM\Column(name="date_fin_evenement", type="datetime", nullable=true)
      */
     private $dateFinEvenement;
 
@@ -534,14 +539,6 @@ class Evenement
 
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get reservations
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -550,4 +547,47 @@ class Evenement
     {
         return $this->reservations;
     }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \UserBundle\Entity\Commentaire $commentaire
+     *
+     * @return Evenement
+     */
+    public function addCommentaire(\UserBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \UserBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\UserBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
 }

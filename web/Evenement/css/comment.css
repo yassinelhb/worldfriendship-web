@@ -45,8 +45,8 @@ p {
     width: 3.5rem;
 }
 .photo .avatar {
-    height: 2.25rem;
-    width: 2.25rem;
+    height: 5.25rem;
+    width: 5.25rem;
     border-radius: 50%;
     background-size: contain;
 }

@@ -1,26 +1,30 @@
 <?php
 
-namespace UserBundle\Form;
+namespace EvenementBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationType extends AbstractType
+class CommentaireForm extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('etat')->add('typeReservation')->add('tarif')->add('numeroTicket')->add('idEvenement')->add('idUser');
+        $builder
+            ->add('contenu', TextareaType::class, ['label' => false,'attr' => ['placeholder' => 'Ajouter votre commentaire']])
+            ->add('valider',SubmitType::class, ['label' => 'Commenter']);
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UserBundle\Entity\Reservation'
+            'data_class' => 'UserBundle\Entity\Commentaire'
         ));
     }
 
@@ -29,7 +33,7 @@ class ReservationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'userbundle_reservation';
+        return 'userbundle_commentaire';
     }
 
 

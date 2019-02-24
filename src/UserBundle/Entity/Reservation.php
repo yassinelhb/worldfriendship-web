@@ -50,7 +50,7 @@ class Reservation
     /**
      * @var int
      *
-     * @ORM\Column(name="tarif", type="integer")
+     * @ORM\Column(name="tarif", type="integer", nullable=true)
      */
     private $tarif;
 
