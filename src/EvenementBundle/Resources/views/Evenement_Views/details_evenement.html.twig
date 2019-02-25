@@ -130,7 +130,7 @@
                                     <li class="list-group-item">
                                         <a id="acount-btn" href="{{ path('pdf_evenement',{'id':evenements.id}) }}"> Telecharger les détails en pdf </a>
 
-                                        <a  id="acount-btn-r" href="{{  path('envoyer_ticket') }}" {% if check == 0 %} class="not-active"  {% endif %}> Je veux recevoir mon ticket </a>
+                                        <a  id="acount-btn-r" href="{{  path('envoyer_ticket' , {'id':evenements.id}) }}" {% if check == 0 %} class="not-active"  {% endif %}> Je veux recevoir mon ticket </a>
                                         {#<a  id="acount-btn-r" href="{{  path('envoyer_ticket') }}" {% if check == 0 %} disabled="true"  {% endif %}> Je veux recevoir mon ticket </a>#}
 
                                     </li>

@@ -2,6 +2,7 @@
 
 namespace EvenementBundle\Controller;
 
+use Endroid\QrCode\QrCode;
 use Swift_Attachment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -189,15 +190,24 @@ class EvenementController extends Controller
     return $this->render('@Evenement/Evenement_Views/autre_evenement.html.twig',['tag' => "Autre Evenement"]);
     }
 
-    public function envoyerTicketAction()
+    public function envoyerTicketAction(Request $request)
     {
+        $user = $this->getUser();
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
+
+        $qrCode = new QrCode('Bonjour Monsieur : '.$user.' ceci votre ticket vous avez participé à l\'événement '. $evenement->getNomEvenement());
+        header('Content-Type: image/png');
+        $qrCode->writeFile('Evenement/image/qrcode/qrcode.png');
+
         //send tiquet at mail
         $user = $this->getUser();
         $message = (new \Swift_Message())->setSubject('Bonjour Monsieur ' . $user)
             ->setFrom('soltani.ahmed1994@gmail.com')
             ->setTo('soltani.ahmed1994@gmail.com')
             ->setBody('votre ticket ')
-            ->attach(Swift_Attachment::fromPath('C:\wamp64\www\worldfriendship\web\Evenement\image\ticket.jpg')
+            ->attach(Swift_Attachment::fromPath('Evenement/image/qrcode/qrcode.png')
                 ->setDisposition('inline'));
         $this->get('mailer')->send($message);
         $this->addFlash(
