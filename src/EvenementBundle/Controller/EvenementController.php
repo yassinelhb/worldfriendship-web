@@ -4,9 +4,12 @@ namespace EvenementBundle\Controller;
 
 use Swift_Attachment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 use UserBundle\Entity\Commentaire;
 use UserBundle\Entity\Evenement;
 use EvenementBundle\Form\AjouterEvenement;
@@ -35,6 +38,10 @@ class EvenementController extends Controller
             if ($form->isValid()) {
                 $event->setEtatEvenement("Non");
                 $event->setIdUser($user);
+                $date1=date_create($event->getDateDebutEvenement()->format('Y-m-d'));
+                $date2=date_create($event->getDateFinEvenement()->format('Y-m-d'));
+                $diff=date_diff($date2,$date1);
+                $event->setDureeEvenement($diff->format('%m mois et %d jours '));
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($event);
                 $em->flush();
@@ -45,6 +52,7 @@ class EvenementController extends Controller
             return $this->redirectToRoute('fos_user_security_login');
         }
     }
+
 
     public function modifierEvenementAction(Request $request)
     {
@@ -118,6 +126,7 @@ class EvenementController extends Controller
                     $reservation->setEtat("Confirmé");
 
                     $evenements->addReservation($reservation);
+                    $evenements->setCapaciteEvenement($evenements->getCapaciteEvenement() - 1);
                     $em->persist($reservation);
                     $em->flush();
                     return $this->redirectToRoute('afficher_mes_reservation');
@@ -198,6 +207,27 @@ class EvenementController extends Controller
         return $this->redirectToRoute('accueil_evenement');
     }
 
+    public function pdfAction(Request $request)
+    {
+        $user = $this->getUser();
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
+        $snappy = $this->get('knp_snappy.pdf');
+
+        $html = "<h1>salut monsieur : </h1> ".$user.
+            "<h1> Evenement : </h1>".$evenement->getNomEvenement();
+        $filename = 'pdf '.$evenement->getNomEvenement();
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
 
     public function mesEvenementsDonneesAction(Request $request)
     {
@@ -328,7 +358,9 @@ class EvenementController extends Controller
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
+        $evenements = $em->getRepository('UserBundle:Evenement')->find($id);
         if ($user !== null && $reservation->getIdUser() == $user ) {
+            $evenements->setCapaciteEvenement($evenements->getCapaciteEvenement() + 1);
             $reservation->setEtat("Annulé");
             $em->persist($reservation);
             $em->flush();
@@ -346,7 +378,9 @@ class EvenementController extends Controller
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
+        $evenements = $em->getRepository('UserBundle:Evenement')->find($id);
         if ($user !== null && $reservation->getIdUser() == $user ) {
+            $evenements->setCapaciteEvenement($evenements->getCapaciteEvenement() - 1);
             $reservation->setEtat("Confirmé");
             $em->persist($reservation);
             $em->flush();
@@ -358,6 +392,7 @@ class EvenementController extends Controller
 
         return  $this->render('@Evenement/Evenement_Views/mes_reservations_evenement.html.twig');
     }
+
 
 
     public function testAction(Request $request)
@@ -411,10 +446,7 @@ class EvenementController extends Controller
         // return new Response("hello world");
            }
 
-    public function test2Action()
-    {
-    return  $this->render('@Evenement/Evenement_Views/test.html.twig', []);
-    }
+
 
 /* public function testAction(Request $request)
     {
@@ -452,26 +484,6 @@ class EvenementController extends Controller
         return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
     }
 */
-    public function pdfAction(Request $request)
-    {
-        $user = $this->getUser();
-        $id = $request->get('id');
-        $em = $this->getDoctrine()->getManager();
-        $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
-        $snappy = $this->get('knp_snappy.pdf');
 
-        $html = "<h1>salut monsieur : </h1> ".$user.
-                "<h1> Evenement : </h1>".$evenement->getNomEvenement();
-        $filename = 'pdf '.$evenement->getNomEvenement();
-
-        return new Response(
-            $snappy->getOutputFromHtml($html),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
-            )
-        );
-    }
 
 }

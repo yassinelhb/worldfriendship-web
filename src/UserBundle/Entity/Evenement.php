@@ -71,6 +71,13 @@ class Evenement
     private $typeReservation;
 
     /**
+     * @var string
+
+     * @ORM\Column(name="test", type="string", length=255, nullable=true)
+     */
+    private $test;
+
+    /**
      * @var \DateTime
      * @Assert\GreaterThanOrEqual(
      *     value = "now",
@@ -590,4 +597,34 @@ class Evenement
         return $this->commentaires;
     }
 
+
+
+
+
+
+
+
+    /**
+     * Set test
+     *
+     * @param string $test
+     *
+     * @return Evenement
+     */
+    public function setTest($test)
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    /**
+     * Get test
+     *
+     * @return string
+     */
+    public function getTest()
+    {
+        return $this->test;
+    }
 }

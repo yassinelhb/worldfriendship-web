@@ -264,6 +264,10 @@
            }
 
            /**end cloud **/
+
+           .map-box {
+               background-color: #A3CCFF;
+           }
        </style>
    {% endblock %}
 {% block content %}
@@ -296,8 +300,12 @@
                                     <img src="{{ asset('Evenement/image/affiches/'~ i.Affiche ) }}">
                                     <div class="overlay">
                                         <h2>Date : {{ i.dateDebutEvenement|date('Y-m-d H:m') }}</h2>
-                                        <a class="info" href="{{ path('details_evenement',{'id':i.id}) }}">Voir
-                                            l'événement</a>
+                                        {% if i.capaciteEvenement == 0 %}
+                                            <a class="btn btn-danger" href="#"> Evenemement est plain </a>
+                                        {% else %}
+                                            <a class="info" href="{{ path('details_evenement',{'id':i.id}) }}"> Voir
+                                                l'événement </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="event-text">
@@ -317,41 +325,38 @@
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title"> l'événement " {{ i.nomEvenement }} " aura lieu
-                                            à {{ i.lieuEvenement }} du {{ i.dateDebutEvenement|date('Y-m-d') }} au
-                                            ----- </h4>
+                                        <h4 class="modal-title">  {{ i.nomEvenement }}  </h4>
+
                                     </div>
                                     <div class="modal-body">
-                                        <!--<p>{{ i.nomEvenement }}</p>
-                                            <div id="map" style="height: 400px;width: 500px;"></div>-->
+
                                         <p>
-                                            Descriptions : <br>
-                                            {{ i.descriptionEvenement }}
+                                            vous être le bienvenu à l'évenement {{ i.nomEvenement }} qui aura lieu à
+                                            {{ i.lieuEvenement }} du {{ i.dateDebutEvenement|date('Y-m-d') }}
+                                            au {{ i.dateFinEvenement|date('Y-m-d') }}
+                                        <ul>
+                                            <li>Duree : {{ i.dureeEvenement }}</li>
+                                            <li>Capacite : {{ i.capaciteEvenement }}</li>
+                                        </ul>
+                                        Descriptions :
+                                        {{ i.descriptionEvenement }}
                                         </p>
-                                        <p>vous être le bienvenu</p>
+
                                     </div>
                                     <div class="modal-footer">
                                         <a id="acount-btn" onclick="{{ path('envoyer_ticket') }}" data-toggle="collapse"
                                            href="#collapseExample{{ i.id }}" role="button" aria-expanded="false"
-                                           aria-controls="collapseExample"> Je veux recevoir mon ticket </a>
+                                           aria-controls="collapseExample"> Lieu </a>
                                         <a id="acount-btn" href="" data-dismiss="modal">Close </a>
                                         <div class="collapse" id="collapseExample{{ i.id }}">
                                             <div class="card card-body">
                                                 <!-- boucle for pour récupérer l'email d'utilisateur connecté-->
-                                                <p> pour confirmer la reception de votre ticket via votre email "
-                                                    {% for user in users %}
-                                                        {{ user.email }}
-                                                    {% endfor %}
-                                                    " cliquez <a href="{{ path('envoyer_ticket') }}"> ici </a>
-                                                </p>
-                                                {% if app.session.flashBag.has('success') %}
-                                                    <div class="alert alert-success">
-                                                        {% for msg in app.session.flashBag.get('success') %}
-                                                            <p align="center">{{ msg }}</p>
-                                                        {% endfor %}
-                                                    </div>
-                                                {% endif %}
-
+                                                <div class="map-box">
+                                                    <iframe width="100%" height="495" frameborder="0" scrolling="no"
+                                                            marginheight="0" marginwidth="0"
+                                                            src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe>
+                                                    {# <div id="map" style="height: 400px;width: 400px;"></div> #}
+                                                </div>
 
                                             </div>
                                         </div>
@@ -378,11 +383,11 @@
     </section><!-- /Services Element -->
     <!-- Carousel -->
     <!--
-     <div style='text-align:center;'>
-        <h3 style='text-align: center;margin: 55px 0px;border-bottom: 2px solid #666; display:inline-block;padding-bottom:10px'>
-            Vivez le meilleur</h3>
+    <div style='text-align:center;'>
+    <h3 style='text-align: center;margin: 55px 0px;border-bottom: 2px solid #666; display:inline-block;padding-bottom:10px'>
+    Vivez le meilleur</h3>
     </div>
-     -->
+    -->
     <br>
     <div id="carouselFade" class="carousel slide carousel-fade" data-ride="carousel">
 
@@ -442,5 +447,27 @@
             });
         });
         /** end title animated **/
+
+    </script>
+
+    <script>
+
+        function initMap() {
+            var myLatLng = {lat: 33.8439408, lng: 9.400138};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8TiyvcAWOHiP6mssvWPqQeMiDMaiSizI&callback=initMap">
     </script>
 {% endblock %}
