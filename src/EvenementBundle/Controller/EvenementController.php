@@ -198,8 +198,6 @@ class EvenementController extends Controller
     public function envoyerTicketAction(Request $request)
     {
         $user = $this->getUser();
-
-
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('UserBundle:Evenement')->find($id);

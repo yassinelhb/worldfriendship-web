@@ -13,6 +13,18 @@ use Doctrine\ORM\EntityRepository;
 class EvenementRepository extends EntityRepository
 {
 
+    public function findWeek(){
+
+        $start_week = date("Y-m-d",strtotime('monday this week'));
+        $end_week = date("Y-m-d",strtotime('sunday this week'));
+        return $this->createQueryBuilder('t')
+            ->where('t.dateDebutEvenement >= :start')
+            ->andWhere('t.dateFinEvenement <= :end')
+            ->setParameter('start',$start_week)
+            ->setParameter('end',$end_week)
+            ->getQuery()
+            ->getResult();
+    }
 
     public function search($data, $page = 0, $max = NULL, $getResult = true)
     {

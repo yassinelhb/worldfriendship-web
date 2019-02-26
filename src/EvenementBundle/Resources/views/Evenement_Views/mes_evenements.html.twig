@@ -12,7 +12,6 @@
     </style>
 {% endblock %}
 {% block content %}
-
     {% if app.session.flashBag.has('success-sup-modif') %}
         <div class="alert alert-success">
             {% for msg in app.session.flashBag.get('success-sup-modif') %}
@@ -21,7 +20,6 @@
         </div>
     {% endif %}
     <div class="row">
-
         <div class="col-lg-10 col-lg-offset-1">
             <table id="myTable" style="width: 100% !important;"
                    class="table table-bordered table-condensed table-hover table-striped display responsive nowrap">
@@ -37,17 +35,11 @@
                     <th class="col-md-1 col-xs-1"> Localisation </th>
                     <th class="col-md-1 col-xs-1"> Affiche</th>
                     <th class="col-md-1 col-xs-1"> Action </th>
-
-
                 </tr>
                 </thead>
             </table>
         </div>
     </div>
-
-
-
-
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('Evenement/js/jquery.dataTables.min.js') }}"></script>
