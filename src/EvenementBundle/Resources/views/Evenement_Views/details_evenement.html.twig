@@ -91,7 +91,7 @@
                             <div align="center">
                                 {% form_theme formRes 'bootstrap_3_layout.html.twig' %}
                                 {{ form_start(formRes) }}
-                                    {% if check == 0 %}
+                                    {% if (check == 0) and (evenements.capaciteEvenement > 0) %}
                                         {{ form_widget(formRes.valider, {'id' : 'acount-btn'}) }}
                                     {% else %}
                                         {{ form_widget(formRes.valider , {'disabled' : true}) }}

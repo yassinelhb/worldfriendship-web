@@ -58,6 +58,7 @@ class EvenementController extends Controller
     public function modifierEvenementAction(Request $request)
     {
         $user = $this->getUser();
+
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
@@ -67,6 +68,10 @@ class EvenementController extends Controller
             if ($form->isValid()) {
                 $em->persist($evenement);
                 $em->flush();
+                $this->addFlash(
+                    'success-sup-modif',
+                    'Modification avec succès!'
+                );
                 return $this->redirectToRoute('afficher_mes_evenements');
             }
         } else {
@@ -84,7 +89,7 @@ class EvenementController extends Controller
             $em->remove($evenement);
             $em->flush();
             $this->addFlash(
-                'success',
+                'success-sup-modif',
                 'Supression avec succès!'
             );
         }
@@ -193,11 +198,15 @@ class EvenementController extends Controller
     public function envoyerTicketAction(Request $request)
     {
         $user = $this->getUser();
+
+
         $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
+        $usermail =$em->getRepository('UserBundle:User')->getMailUser($user->getId());
 
-        $qrCode = new QrCode('Bonjour Monsieur : '.$user.' ceci votre ticket vous avez participé à l\'événement '. $evenement->getNomEvenement());
+        $qrCode = new QrCode('Bonjour Monsieur : '.$user.' , ceci votre ticket vous avez participé à l\'événement : '. $evenement->getNomEvenement().
+        ' , Date debut : '.$evenement->getDateDebutEvenement()->format('Y-m-d'));
         header('Content-Type: image/png');
         $qrCode->writeFile('Evenement/image/qrcode/qrcode.png');
 
@@ -212,7 +221,7 @@ class EvenementController extends Controller
         $this->get('mailer')->send($message);
         $this->addFlash(
             'success',
-            'Envoie avec succès!'
+            'votre QRCODE est envoyé avec succès sur votre mail : '
         );
         return $this->redirectToRoute('accueil_evenement');
     }
@@ -225,8 +234,8 @@ class EvenementController extends Controller
         $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
         $snappy = $this->get('knp_snappy.pdf');
 
-        $html = "<h1 align='center'>salut monsieur : </h1> ".$user.
-            "<h1> Evenement : </h1>".$evenement->getNomEvenement()."<p>".$evenement->getDureeEvenement()."</p>";
+        $html = "<h1 style=\"background-color:powderblue;\" align='center'> Evenement : ".$evenement->getNomEvenement().
+            "  </h1> <h1> Bonjour Monsieur  : ".$user." </h1>  <p>".$evenement->getDureeEvenement()."</p>";
         $filename = 'pdf '.$evenement->getNomEvenement();
 
         return new Response(
@@ -376,7 +385,7 @@ class EvenementController extends Controller
             $em->persist($reservation);
             $em->flush();
             $this->addFlash(
-                'success',
+                'success_res',
                 'Annulation avec succès!'
             );
         }
@@ -397,7 +406,7 @@ class EvenementController extends Controller
             $em->persist($reservation);
             $em->flush();
             $this->addFlash(
-                'success',
+                'success_res',
                 'Reconfirmation avec succès!'
             );
         }

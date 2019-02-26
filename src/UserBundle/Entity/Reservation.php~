@@ -5,7 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reservation
+ * ReservationForm
  *
  * @ORM\Table(name="reservation")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\ReservationRepository")
@@ -50,7 +50,7 @@ class Reservation
     /**
      * @var int
      *
-     * @ORM\Column(name="tarif", type="integer")
+     * @ORM\Column(name="tarif", type="integer", nullable=true)
      */
     private $tarif;
 
@@ -215,5 +215,14 @@ class Reservation
     {
         return $this->numeroTicket;
     }
-}
 
+    /**
+     * Get idReservation
+     *
+     * @return integer
+     */
+    public function getIdReservation()
+    {
+        return $this->idReservation;
+    }
+}

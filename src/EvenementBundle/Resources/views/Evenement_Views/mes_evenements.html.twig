@@ -13,9 +13,9 @@
 {% endblock %}
 {% block content %}
 
-    {% if app.session.flashBag.has('success') %}
+    {% if app.session.flashBag.has('success-sup-modif') %}
         <div class="alert alert-success">
-            {% for msg in app.session.flashBag.get('success') %}
+            {% for msg in app.session.flashBag.get('success-sup-modif') %}
                 <p align="center">{{ msg }}</p>
             {% endfor %}
         </div>

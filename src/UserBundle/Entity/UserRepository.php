@@ -20,10 +20,11 @@ class UserRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getNomUtilisateur(){
-        $query=$this->getEntityManager()->createQuery("select u.username from  UserBundle:User u  INNER JOIN UserBundle:Evenement e WITH u.id = e.idUser");
+    public function getMailUser($id){
+        $query=$this->getEntityManager()->createQuery("Select u.email from UserBundle:User u where u.id=:id ")
+            ->setParameter('id',$id);
+        ;
+
         return $query->getResult();
-
-
     }
 }

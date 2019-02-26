@@ -115,7 +115,7 @@ class Commentaire
 
     public function __construct()
     {
-        $this->post = new \DateTime();
+        $this->dateCommentaire = new \DateTime();
     }
 
     /**
@@ -165,5 +165,28 @@ class Commentaire
     {
         return $this->contenu;
     }
-}
 
+    /**
+     * Set etatCommentaire
+     *
+     * @param string $etatCommentaire
+     *
+     * @return Commentaire
+     */
+    public function setEtatCommentaire($etatCommentaire)
+    {
+        $this->etatCommentaire = $etatCommentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get etatCommentaire
+     *
+     * @return string
+     */
+    public function getEtatCommentaire()
+    {
+        return $this->etatCommentaire;
+    }
+}

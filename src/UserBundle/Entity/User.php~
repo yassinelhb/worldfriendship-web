@@ -20,6 +20,12 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    protected $email;
 
     public function __construct()
     {

@@ -288,7 +288,19 @@
 
         </div>
 
-        <br>
+       {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    <p align="center">{{ msg }}
+<a href="https://mail.google.com" target="_blank\">
+                    {% for user in users %}
+                        {{ user.email }}
+                    {% endfor %}
+                    </a> </p>
+                {% endfor %}
+
+            </div>
+        {% endif %}
         <div class="container">
 
             <div class="row">
@@ -301,7 +313,7 @@
                                     <div class="overlay">
                                         <h2>Date : {{ i.dateDebutEvenement|date('Y-m-d H:m') }}</h2>
                                         {% if i.capaciteEvenement == 0 %}
-                                            <a class="btn btn-danger    " href="#"> Evenemement est plain </a>
+                                            <a class="btn btn-danger" href="{{ path('details_evenement',{'id':i.id}) }}"> Evenemement est plain </a>
                                         {% else %}
                                             <a class="info" href="{{ path('details_evenement',{'id':i.id}) }}"> Voir
                                                 l'événement </a>

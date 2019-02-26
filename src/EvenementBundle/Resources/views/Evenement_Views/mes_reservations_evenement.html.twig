@@ -12,7 +12,13 @@
     </style>
 {% endblock %}
 {% block content %}
-
+    {% if app.session.flashBag.has('success_res') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success_res') %}
+                <p align="center">{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div class="row">
 
