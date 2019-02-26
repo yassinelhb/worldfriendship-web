@@ -225,8 +225,8 @@ class EvenementController extends Controller
         $evenement = $em->getRepository('UserBundle:Evenement')->find($id);
         $snappy = $this->get('knp_snappy.pdf');
 
-        $html = "<h1>salut monsieur : </h1> ".$user.
-            "<h1> Evenement : </h1>".$evenement->getNomEvenement();
+        $html = "<h1 align='center'>salut monsieur : </h1> ".$user.
+            "<h1> Evenement : </h1>".$evenement->getNomEvenement()."<p>".$evenement->getDureeEvenement()."</p>";
         $filename = 'pdf '.$evenement->getNomEvenement();
 
         return new Response(
@@ -333,7 +333,7 @@ class EvenementController extends Controller
                         'dureeEvenement' => $event->getDureeEvenement(),
                         'lieuEvenement' => $event->getLieuEvenement(),
                         'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
-                        'Action' => "<a href=" . $this->generateUrl('annuler_reservation', ['id' => $reservation->getIdReservation()]) . ">annuler</a>"
+                        'Action' => "<a href=" . $this->generateUrl('annuler_reservation', ['id' => $reservation->getIdReservation(), 'id-event' => $event->getId()]) . ">annuler</a>"
                     ];
                 }
                 else   if ($reservation->getIdUser() == $user && $reservation->getEtat() == "Annulé" ) {
@@ -349,7 +349,7 @@ class EvenementController extends Controller
                         'dureeEvenement' => $event->getDureeEvenement(),
                         'lieuEvenement' => $event->getLieuEvenement(),
                         'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $event->getAffiche() . '"/>',
-                        'Action' => "<a href=" . $this->generateUrl('reconfirmer_reservation', ['id' => $reservation->getIdReservation()]) . ">reconfirmer</a>"
+                        'Action' => "<a href=" . $this->generateUrl('reconfirmer_reservation', ['id' => $reservation->getIdReservation(), 'id-event' => $event->getId()]) . ">reconfirmer</a>"
                     ];
                 }
 
@@ -366,9 +366,10 @@ class EvenementController extends Controller
     public function annulerReservationAction(Request $request){
         $user = $this->getUser();
         $id = $request->get('id');
+        $idevenet = $request->get('id-event');
         $em = $this->getDoctrine()->getManager();
         $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
-        $evenements = $em->getRepository('UserBundle:Evenement')->find($id);
+        $evenements = $em->getRepository('UserBundle:Evenement')->find($idevenet);
         if ($user !== null && $reservation->getIdUser() == $user ) {
             $evenements->setCapaciteEvenement($evenements->getCapaciteEvenement() + 1);
             $reservation->setEtat("Annulé");
@@ -386,9 +387,10 @@ class EvenementController extends Controller
     public function reconfirmerReservationAction(Request $request){
         $user = $this->getUser();
         $id = $request->get('id');
+        $idevenet = $request->get('id-event');
         $em = $this->getDoctrine()->getManager();
         $reservation = $em->getRepository('UserBundle:Reservation')->find($id);
-        $evenements = $em->getRepository('UserBundle:Evenement')->find($id);
+        $evenements = $em->getRepository('UserBundle:Evenement')->find($idevenet);
         if ($user !== null && $reservation->getIdUser() == $user ) {
             $evenements->setCapaciteEvenement($evenements->getCapaciteEvenement() - 1);
             $reservation->setEtat("Confirmé");

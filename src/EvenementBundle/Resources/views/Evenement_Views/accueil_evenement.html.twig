@@ -301,7 +301,7 @@
                                     <div class="overlay">
                                         <h2>Date : {{ i.dateDebutEvenement|date('Y-m-d H:m') }}</h2>
                                         {% if i.capaciteEvenement == 0 %}
-                                            <a class="btn btn-danger" href="#"> Evenemement est plain </a>
+                                            <a class="btn btn-danger    " href="#"> Evenemement est plain </a>
                                         {% else %}
                                             <a class="info" href="{{ path('details_evenement',{'id':i.id}) }}"> Voir
                                                 l'événement </a>
