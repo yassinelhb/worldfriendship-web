@@ -51,32 +51,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <ul>
-                        <li><a href="index.html">Home one</a></li>
-                        <li><a href="index-v2.html">Home Two</a></li>
-                    </ul>
                 </li>
                 <li><a href="/product">Product <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <ul>
-                        <li><a href="about-01.html">About Us 1</a></li>
-                        <li><a href="about-02.html">About Us 2</a></li>
-                    </ul>
                 </li>
-                <li><a href="/group">Groupe <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <ul>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="#"><span><i class="fa fa-angle-right"></i></span>Additional pages</a>
-                            <ul>
-                                <li><a href="faqs.html">FAQ's</a></li>
-                                <li><a href="404.html">404 page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="single-photography.html">Single Photography</a></li>
-                    </ul>
+                <li><a href="/group"> Forum <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 </li>
-                <li><a href="{{ path('accueil_evenement') }}"> Evenement <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <li><a href="{{ path('accueil_evenement') }}"> Event <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     <ul>
                         <li><a href="{{ path('accueil_evenement') }}">Accueil</a></li>
                         <li><a href="{{ path('afficher_mes_evenements') }}">Mes Evénement </a></li>
@@ -151,71 +131,6 @@
     <footer class="site-footer footer-v2 footer-overlay" style="background:url({{ asset('assets/img/11.jpg') }}) no-repeat fixed;">
         <div class="container">
             <div class="row">
-                <div class="site-bottom clearfix">
-                    <div class="col-md-2 col-sm-6 site-bottom-1">
-                        <aside class="widget widget-nav">
-                            <h3 class="widget-title">Pages</h3>
-                            <ul class="menu">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Latest news</a></li>
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-3 col-sm-6 site-bottom-3">
-                        <aside class="widget widget-nav">
-                            <h3 class="widget-title">Terms</h3>
-                            <ul class="menu">
-                                <li><a href="#">FAQ’s</a></li>
-                                <li><a href="#">Privecy & Policy</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Lience Policy</a></li>
-                                <li><a href="#">404 Policy</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-4 col-sm-6 site-bottom-2">
-                        <aside class="widget widget-nav">
-                            <h3 class="widget-title">Twitter feed</h3>
-                            <div class="twitter-feed">
-                                <div class="twitter-feed-icon">
-                                    <i class="fa fa-twitter"></i>
-                                </div>
-                                <div class="twitter-feed-content">
-                                    <p>Our every products has a grate discount. Get 50% discount to get started with <a href="">#Wordpress</a> <a href="">#discount</a><br /><a href="">http://t.co/Wa8Hg98Okg</a></p>
-                                </div>
-                            </div>
-                            <div class="twitter-feed">
-                                <div class="twitter-feed-icon">
-                                    <i class="fa fa-twitter"></i>
-                                </div>
-                                <div class="twitter-feed-content">
-                                    <p><a href="">@RidoyRajoan</a> Hi Weblos, I need a website to build. Can you help me?</p>
-                                </div>
-                            </div>
-                            <div class="twitter-feed">
-                                <div class="twitter-feed-icon">
-                                    <i class="fa fa-twitter"></i>
-                                </div>
-                                <div class="twitter-feed-content bor-btm-none">
-                                    <p>Themerio: <a href="">#design</a> vs <a href="">#analysis</a> which one you will prefer? <br /><a href="">http://t.co/Zo71Uh9ObG</a></p>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-                    <div class="col-md-3 col-sm-6 site-bottom-4">
-                        <aside class="widget widget-text">
-                            <h3 class="widget-title">Newsletter</h3>
-                            <p>Subscribe to our newsletter to receive news, updates, free stuff and new releases by email. We don't do spam.</p>
-                            <form class="form-newsletter-ft" action="#" method="get">
-                                <input name="email" placeholder="Enter your email" required="" type="email">
-                                <input value="Go" type="submit">
-                            </form>
-                        </aside>
-                    </div>
-                </div>
                 <!-- .site-bottom -->
                 <div class="bottom-footer">
                     <div class="col-md-6 col-sm-4 pull-right">
@@ -241,8 +156,22 @@
         </div>
     </footer><!-- /Footer Area -->
 
-    <a class="page-scroll" href="#page-top" id="toTop"><span class="ti-rocket"></span></a>
 
+
+
+    <div class="section-panier-right">
+        <div class="content-panier">
+            <div class="header-title">
+                <h1>shopping cart</h1>
+                <span class="close-panier">
+                            <i class="fa fa-close"></i>
+                        </span>
+            </div>
+            <div class="body-panier"></div>
+            <div class="footer-panier">
+            </div>
+        </div>
+    </div>
 </div>
 
 

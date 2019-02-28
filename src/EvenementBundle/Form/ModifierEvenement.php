@@ -38,7 +38,12 @@ class ModifierEvenement extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker form-control'],
             ])
-            ->add('dureeEvenement')
+            ->add('dateFinEvenement',DateTimeType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd HH:mm',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker form-control'],
+            ])
             ->add('lieuEvenement')
             ->add('capaciteEvenement')
             ->add('descriptionEvenement', TextareaType::class,['attr' => ['maxlength' => 255]])

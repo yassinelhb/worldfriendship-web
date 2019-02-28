@@ -39,7 +39,7 @@ class Evenement
     private $reservations;
 
     /**
-     * @ORM\OneToMany (targetEntity="UserBundle\Entity\Commentaire", mappedBy="idEvenement")
+     * @ORM\OneToMany (targetEntity="CommentaireEvenement", mappedBy="idEvenement")
      */
     private $commentaires;
 
@@ -566,11 +566,11 @@ class Evenement
     /**
      * Add commentaire
      *
-     * @param \UserBundle\Entity\Commentaire $commentaire
+     * @param \UserBundle\Entity\CommentaireEvenement $commentaire
      *
      * @return Evenement
      */
-    public function addCommentaire(\UserBundle\Entity\Commentaire $commentaire)
+    public function addCommentaire(\UserBundle\Entity\CommentaireEvenement $commentaire)
     {
         $this->commentaires[] = $commentaire;
 
@@ -580,9 +580,9 @@ class Evenement
     /**
      * Remove commentaire
      *
-     * @param \UserBundle\Entity\Commentaire $commentaire
+     * @param \UserBundle\Entity\CommentaireEvenement $commentaire
      */
-    public function removeCommentaire(\UserBundle\Entity\Commentaire $commentaire)
+    public function removeCommentaire(\UserBundle\Entity\CommentaireEvenement $commentaire)
     {
         $this->commentaires->removeElement($commentaire);
     }

@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/teckdevs/themify-icons.css') }}">
@@ -119,36 +123,28 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="/">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                            <ul>
-                                <li><a href="index.html">Home one</a></li>
-                                <li><a href="index-v2.html">Home Two</a></li>
-                            </ul>
+                        <li><a href="{{ path('experience_homepage') }}">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                         </li>
                         <li><a href="/product">Product <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             <ul>
-                                <li><a href="about-01.html">About Us 1</a></li>
+                                <li><a href="{{ path('Produit_solde') }}">produit soldé</a></li>
                                 <li><a href="about-02.html">About Us 2</a></li>
                             </ul>
                         </li>
-                        <li><a href="/group">Groupe <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <li><a href="/group">Forum <i class="fa fa-angle-down" aria-hidden="true"></i> </a>
                             <ul>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="team.html">Team</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-right"></i></span>Additional pages</a>
-                                    <ul>
-                                        <li><a href="faqs.html">FAQ's</a></li>
-                                        <li><a href="404.html">404 page</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="single-photography.html">Single Photography</a></li>
+                                <li><a href="/message">Message</a></li>
+
                             </ul>
+
                         </li>
-                        <li><a href="/evenements/accueil_evenement">Event <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <li><a href="{{ path('accueil_evenement') }}"> event <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             <ul>
-                                <li><a href="blog-list.html">Blog List</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
+                                <li><a href="{{ path('accueil_evenement') }}">Accueil</a></li>
+                                <li><a href="{{ path('afficher_mes_evenements') }}">Mes Evénement </a></li>
+                                <li><a href="{{ path('afficher_mes_reservation') }}"> Mes reservations  </a></li>
+                                <li><a href="{{ path('ajouter_evenement') }}">Ajouter un Evénement </a></li>
+
                             </ul>
                         </li>
                         <li><a href="/contact">Contact</a></li>
@@ -169,6 +165,8 @@
                                         <i class="fa fa-user"></i>
                                         {{  app.user.username }}</a>
                                   </li>
+                                  <li><a href="/product/mywishlist" ><i class="fa fa-heart-o"></i>Wishlist</a>
+
                                   <li><a href="{{ path('fos_user_security_logout') }}">
                                         <i class="fa fa-power-off"></i>
                                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -181,11 +179,13 @@
                                          </a>
                                     </li>
                                 {% endif %}
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <a href="#" class="mypanier">
                                 <img src="../assets/img/icons/shopmarket.png">
+                                <span id="countpanier"></span>
                             </a>
                         </li>
                     </ul>
@@ -202,71 +202,6 @@
             <footer class="site-footer footer-v2 footer-overlay" style="background:url({{ asset('assets/img/11.jpg') }}) no-repeat fixed;">
                 <div class="container">
                     <div class="row">
-                        <div class="site-bottom clearfix">
-                            <div class="col-md-2 col-sm-6 site-bottom-1">
-                                <aside class="widget widget-nav">
-                                    <h3 class="widget-title">Pages</h3>
-                                    <ul class="menu">
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Latest news</a></li>
-                                        <li><a href="#">Team</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </aside>
-                            </div>
-                            <div class="col-md-3 col-sm-6 site-bottom-3">
-                                <aside class="widget widget-nav">
-                                    <h3 class="widget-title">Terms</h3>
-                                    <ul class="menu">
-                                        <li><a href="#">FAQ’s</a></li>
-                                        <li><a href="#">Privecy & Policy</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
-                                        <li><a href="#">Lience Policy</a></li>
-                                        <li><a href="#">404 Policy</a></li>
-                                    </ul>
-                                </aside>
-                            </div>
-                            <div class="col-md-4 col-sm-6 site-bottom-2">
-                                <aside class="widget widget-nav">
-                                    <h3 class="widget-title">Twitter feed</h3>
-                                    <div class="twitter-feed">
-                                        <div class="twitter-feed-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </div>
-                                        <div class="twitter-feed-content">
-                                            <p>Our every products has a grate discount. Get 50% discount to get started with <a href="">#Wordpress</a> <a href="">#discount</a><br /><a href="">http://t.co/Wa8Hg98Okg</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="twitter-feed">
-                                        <div class="twitter-feed-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </div>
-                                        <div class="twitter-feed-content">
-                                            <p><a href="">@RidoyRajoan</a> Hi Weblos, I need a website to build. Can you help me?</p>
-                                        </div>
-                                    </div>
-                                    <div class="twitter-feed">
-                                        <div class="twitter-feed-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </div>
-                                        <div class="twitter-feed-content bor-btm-none">
-                                            <p>Themerio: <a href="">#design</a> vs <a href="">#analysis</a> which one you will prefer? <br /><a href="">http://t.co/Zo71Uh9ObG</a></p>
-                                        </div>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-md-3 col-sm-6 site-bottom-4">
-                                <aside class="widget widget-text">
-                                    <h3 class="widget-title">Newsletter</h3>
-                                    <p>Subscribe to our newsletter to receive news, updates, free stuff and new releases by email. We don't do spam.</p>
-                                    <form class="form-newsletter-ft" action="#" method="get">
-                                        <input name="email" placeholder="Enter your email" required="" type="email">
-                                        <input value="Go" type="submit">
-                                    </form>
-                                </aside>
-                            </div>
-                        </div>
                         <!-- .site-bottom -->
                         <div class="bottom-footer">
                             <div class="col-md-6 col-sm-4 pull-right">
@@ -292,26 +227,25 @@
                 </div>
             </footer><!-- /Footer Area -->
 
-            <a class="page-scroll" href="#page-top" id="toTop"><span class="ti-rocket"></span></a>
 
+
+
+            <div class="section-panier-right">
+                <div class="content-panier">
+                    <div class="header-title">
+                        <h1>shopping cart</h1>
+                        <span class="close-panier">
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                    <div class="body-panier"></div>
+                    <div class="footer-panier">
+                    </div>
+                </div>
+            </div>
         </div>
 
 
-       <!-- <script>
-            window.onscroll = function() {myFunction()};
-
-            var navbar = document.getElementById("stickynav");
-            var sticky = navbar.offsetTop;
-
-            function myFunction() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky")
-                } else {
-                    navbar.classList.remove("sticky");
-                }
-            }
-        </script>
-            -->
 
         <script src="{{ asset('assets/js/teckdevs/plugins.js') }}"></script>
         <script src="{{ asset('assets/js/teckdevs/jquery.min.js') }}"></script>
@@ -331,23 +265,593 @@
         <script src="{{ asset('assets/js/teckdevs/jquery.counterup.js') }}"></script>
         <script src="{{ asset('assets/js/teckdevs/main.js') }}"></script>
 
-
-        {% block javascripts %}{% endblock %}
-
-
         <script>
             $(document).ready(function(){
 
+
+                //getProduitModal
+
+                function getproduct(id){
+                    var path = "{{ path('get_produitAjax') }}";
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        data: {
+                            "id": id,
+                        },
+                        success: function (data) {
+
+
+                            $(".modal-product .prodimg1").attr('src','../assets/img/product/'+data.firstimg)
+                            $(".modal-product .prodimgitem1").attr('src','../assets/img/product/'+data.firstimg)
+                            $(".modal-product .prodimg2").attr('src','../assets/img/product/'+data.secondimg)
+                            $(".modal-product .prodimgitem2").attr('src','../assets/img/product/'+data.secondimg)
+                            $(".modal-product .prodimg3").attr('src','../assets/img/product/'+data.thirdimg)
+                            $(".modal-product .prodimgitem3").attr('src','../assets/img/product/'+data.thirdimg)
+                            $(".modal-product .title-prod").append(data.libelle)
+                            $(".modal-product .priceprod").append(data.prix+" TND")
+                            $(".modal-product .descprod").append(data.description)
+                            $(".modal-product .taillprod span").append(data.taille)
+                            $(".modal-product .colorprod span").css("background",data.color)
+                            $(".modal-product .btn-livraison").attr("value",data.id)
+
+
+                        }
+
+                    });
+                }
+
+
+                $(".btn-view").click(function(){
+                    var id = $(this).val()
+                    getproduct(id);
+
+                    $(".wr-loading").show();
+                    $(".modal-product").show();
+                    $(".modal-content").slideUp( 300 ).delay( 1000 ).fadeIn(350);
+                    $(".wr-loading").delay( 1000 ).fadeOut(350);
+                    $('html, body').css('overflow-y', 'hidden');
+
+
+                });
+
+                $(".modal-close").click(function(){
+                    $(".modal-product").hide();
+                    $(".modal-content").hide();
+                    $('html, body').css('overflow-y', 'auto');
+
+
+
+                });
+
+
+
+
+                //searchAjax
+
                 $(".btnopen").click(function(){
-                    $(".header-search").slideUp( 300 ).delay( 500 ).fadeIn(350);
+                    $(".header-search").fadeIn(350);
                 });
 
                 $(".close-search").click(function(){
                     $(this).addClass("btnopen")
-                    $(".header-search").slideUp( 300 ).delay( 500 ).fadeOut(350);
+                    $(".header-search").fadeOut(350);
+                    $("#inp_search_produit").val('');
+                    $(".pop-search").fadeOut();
                 });
 
+
+                $("#inp_search_produit").keyup(function () {
+                    searchProduct();
+                });
+
+                $("#cagetorie_prod").change(function () {
+                    searchProduct();
+                });
+
+                function searchProduct(){
+
+                    $(".pop-search ul").empty();
+
+                    var key_search = $("#inp_search_produit").val();
+                    $("#keysearch").text(key_search)
+
+                    if(key_search.length){
+                        $(".pop-search").fadeIn(350);
+                    }else {
+                        $(".pop-search").fadeOut(350);
+                    }
+
+                    var selected = $("#cagetorie_prod").find('option:selected');
+                    var name_Categorie = selected.data('name');
+                    var code_Categorie = selected.data('code');
+
+                    var url =  '{{ path("produit_search", {'c':'ctt','n':'nt','q':'qt'}) }}';
+                    url = url.replace("ctt",name_Categorie).replace("nt",code_Categorie).replace('&amp;','&').replace("qt",key_search).replace('&amp;','&');
+
+                    $(".btn-searchProd").attr("href", url);
+                    $(".link-all").attr("href", url);
+
+                    var path = "{{ path('search_produitAjax') }}";
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        data: {
+                            "name": name_Categorie,
+                            "code": code_Categorie,
+                            "key": key_search,
+                        },
+                        success: function (data) {
+                            $(".pop-search ul").empty();
+
+                            if(data.length){
+
+                                $.each(data, function (i, row) {
+                                    var id= row['id'] ;
+                                    var url =  '{{ path("produit_produit", {'id': 'id'}) }}';
+                                    url = url.replace("id", id);
+
+                                    $(".pop-search ul").append('<li class="item-prod">' +
+
+                                        '<a href="'+url+'">' +
+                                        '<div class="row">' +
+                                        '<div class="col-md-3">' +
+                                        '<img src="../assets/img/product/'+row['firstimg']+'">' +
+                                        '</div>' +
+                                        '<div class="col-md-9 info-prod">' +
+                                        '<h2 href="#" class="ttprod">' + row['libelle'] + '</h2>' +
+                                        '<p class="starprod">' +
+                                        '<i class="fa fa-star-o"></i>' +
+                                        '<i class="fa fa-star-o"></i>' +
+                                        '<i class="fa fa-star-o"></i>' +
+                                        '<i class="fa fa-star-o"></i>' +
+                                        '<i class="fa fa-star-o"></i>' +
+                                        '</p>' +
+                                        '<p class="priceprod">' + row['prix'] + ' TND</p>' +
+                                        '</div>' +
+                                        '</div>' +
+
+                                        '</a>' +
+                                        '</li >')
+                                    return i<2;
+                                })
+                            }else {
+                                $(".pop-search ul").append('<li><a class="link-search">'+
+                                    '<i class="fa fa-search"></i> No found any item!'+
+                                    '</a></li>');
+                            }
+
+                        }
+
+                    });
+
+                }
+
+
+
+                //GetPanier
+                getPanier();
+
+                function getPanier(){
+
+                    var path = "{{ path('get_panierAjax') }}";
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        success: function(data){
+                            $(".body-panier").empty();
+                            $(".footer-panier").empty();
+
+                            $.each(data['lignedepaniers'], function(i, row){
+                                var id= row['produit']['id'] ;
+                                var url =  '{{ path("produit_produit", {'id': 'id'}) }}';
+                                url = url.replace("id", id);
+                                $(".body-panier").prepend(' <div class="item-panier"> ' +
+                                    '<div class="row">' +
+                                    '<div class="col-md-4">' +
+                                    '<img src="../assets/img/product/'+row['produit']['firstimg']+ '">' +
+                                    '</div>' +
+                                    '<div class="col-md-8 prod-info">' +
+                                    '<button class="btn-delete deletePanier" value="'+row['id']+'"><img src="../assets/img/icons/trash.png"></button>' +
+                                    '<a class="titleprod" href="'+url+'">'+row['produit']['libelle']+ '</a>' +
+                                    '<p class="tailleprod">Taille: '+row['produit']['taille']+ '</p>' +
+                                    '<p class="colorprod">Couleur: <span style="background: '+row['produit']['color']+'" ></p>' +
+                                    '<p class="priceprod">'+row['produit']['prix']+' TND <span class="countprod">X '+row['quantite']+'</span></p>' +
+                                    '</div>' +
+                                    '</div>'+
+                                    '</div>');
+                            })
+                            if(data['lignedepaniers']){
+                                $("#countpanier").text(data['nbrProduit']);
+                                $("#countpanier").fadeIn();
+                                $(".footer-panier").append('<div class="detail-totals">'+
+                                    '<p class="detail-block"> ' +
+                                    '<span class="detail-label">'+data['nbrProduit']+' articles</span>' +
+                                    '<span class="detail-price">'+(data['total']-7)+' TND</span>' +
+                                    '</p>' +
+                                    '<p class="detail-block"> ' +
+                                    '<span class="detail-label">Livraison</span>' +
+                                    '<span class="detail-price">7,00 TND</span>' +
+                                    ' </p>'+
+                                    '</div>'+
+                                    '<div class="panier-total">'+
+                                    '<p class="total-block"> ' +
+                                    '<span class="total-label">Total(HT)</span>' +
+                                    '<span class="total-price">'+data['total']+'  TND</span>' +
+                                    '</p>'+
+                                    '</div>' +
+                                    '<a href="{{ path('produit_panier') }}" class="btn-command">Proceed to checkout</a>');
+
+
+
+
+                            }
+                            else {
+                                $("#countpanier").fadeOut();
+
+                                $(".footer-panier").append('<div class="detail-totals">'+
+                                    '<p class="detail-block"> ' +
+                                    '<span class="detail-label">0 articles</span>' +
+                                    '<span class="detail-price">0 TND</span>' +
+                                    '</p>' +
+                                    '<p class="detail-block"> ' +
+                                    '<span class="detail-label">Livraison</span>' +
+                                    '<span class="detail-price">7,00 TND</span>' +
+                                    '</p>' +
+                                    '</div>' +
+                                    '<div class="panier-total">'+
+                                    '<p class="total-block"> ' +
+                                    '<span class="total-label">Total(HT)</span>' +
+                                    '<span class="total-price">0 TND</span>' +
+                                    '</p>'+
+                                    '</div>' +
+                                    '<a href="{{ path('produit_panier') }}" class="btn-command">Proceed to checkout</a>');
+                            }
+
+                        }});
+                }
+
+
+                //deleteProduitPanier
+                $(document).on("click", ".deletePanier", function() {
+
+                    var path = "{{ path('delete_panierAjax') }}";
+                    var id = $(this).val();
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        data: {
+                            "id": id
+                        },
+                        success: function(data){
+                            getPanier();
+                        }});
+
+                });
+
+
+
+
+
+                //openPanierRight
+                $(".mypanier").click(function(){
+                    openPanier();
+                });
+
+                function openPanier(){
+                    getPanier();
+                    $(".section-panier-right").css({"opacity":1,"visibility":"visible","right":0,"transition":".3s",'overflow-x':'hidden'});
+                    $('html, body').css({'overflow-y':'hidden'});
+
+                }
+
+
+
+                //closePanier
+
+                $(".close-panier").click(function () {
+                    closePanier();
+                });
+
+                function closePanier() {
+                    $(".section-panier-right").css({
+                        "opacity": 0,
+                        "visibility": "hidden",
+                        "right": "-200px",
+                        "transition": ".2s"
+                    });
+                    $('html, body').css({'overflow-y': 'visible'});
+                }
+
+
+
+
+
+                $(".alert-stock .btn-closeAlert").click(function () {
+                    $(".alert-stock").fadeOut(250);
+                })
+
+
+
+                //AddToPanier
+
+                $(".btn-panier").click(function () {
+
+                    var path = "{{ path('create_panier') }}";
+                    var id = $(this).val();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        data: {
+                            "id": id,
+                            "qte":1
+                        },
+                        success: function(data){
+                            if(data.stock==false){
+                                $(".alert-stock").fadeIn(250);
+                            }
+
+                            if(data.check){
+                                openPanier();
+                            }
+                            if(data.check==false){
+                                var route = "{{ path('fos_user_security_login')|escape('js') }}";
+                                window.location = route;
+                            }
+
+
+                        }});
+
+                })
+
+
+                //IncProduit
+
+                $("#incprod").click(function(){
+                    var nb =  parseInt($("#inpNbprod").val());
+                    $("#inpNbprod").val(nb + 1);
+                });
+
+
+                //DicProduit
+                $("#dicprod").click(function(){
+                    var nb =  parseInt($("#inpNbprod").val());
+                    if(nb>1){
+                        $("#inpNbprod").val(nb - 1);
+                    }
+                });
+
+
+
+                $(".btn-livraison").click(function () {
+
+                    var nb =  parseInt($("#inpNbprod").val());
+                    if(nb>0){
+                        var path = "{{ path('create_panier') }}";
+                        var id = $(this).val();
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: path,
+                            data: {
+                                "id": id,
+                                "qte":nb,
+                            },
+                            success: function(data){
+                                if(data.stock==false){
+                                    $(".alert-stock").fadeIn(250);
+                                }
+                                if(data.check){
+                                    $(".modal-product").hide();
+                                    $(".modal-content").hide();
+                                    $('html, body').css('overflow-y', 'auto');
+                                    openPanier();
+                                }
+                                if(data.check==false){
+                                    var route = "{{ path('fos_user_security_login')|escape('js') }}";
+                                    window.location = route;
+                                }
+                            }});
+                    }
+                })
+
+
+
+                //LikeProduit
+
+
+                $(".btn-heart").click(function () {
+
+                    var path = "{{ path('like_produitAjax') }}";
+                    var id = $(this).val();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: path,
+                        data: {
+                            "id": id,
+                        },
+                        success: function(data){
+                            if(data=='like'){
+                                $(".notify-like").fadeIn(250);
+                            }
+                            if(data.check==false){
+                                var route = "{{ path('fos_user_security_login')|escape('js') }}";
+                                window.location = route;
+                            }
+                        }});
+
+                })
+
+
+
+                $(".notify-like .icon-closelike").click(function () {
+                    $(".notify-like").fadeOut(250);
+                })
+
+
+
+                //getCategorieMenuLeft
+
+                var path = "{{ path('categorieproduit_json') }}";
+                $(".card-categ .menu-cat").empty();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: path,
+                    success: function(data){
+                        $.each(data, function(i, categorie) {
+
+                            $(".card-categ .menu-cat").append('<li>' +
+                                '<a href="">' + categorie['libelle']+
+                                '<i class="fa fa-angle-right"></i>'+
+                                '</a>'+
+                                '<div class="menudrop">'+
+                                '<div class="row">');
+
+                            $.each(categorie['souscategorieproduits'], function (i, souscategorie) {
+                                $(".card-categ .menu-cat .menudrop").append('<div class="col-md-4">' +
+                                    '<h2>' + souscategorie['libelle'] + '</h2>' +
+                                    '<span class="hr-menu"></span>'+
+                                    '<ul class=listcat>' );
+
+                                $.each(souscategorie['produits'], function (i, produits) {
+                                    $(".card-categ .menu-cat .menudrop .listcat").append('<li>' +
+                                        '<a href="">'+produits['libelle']+'</a>'+
+                                        '</li>');
+                                    return i<2;
+
+                                })
+
+                                $(".card-categ .menu-cat .menudrop").append('</ul>' +
+                                    '</div>' );
+                            })
+
+                            $(".card-categ .menu-cat").append('</div></div></li>') ;
+
+                        })
+
+                    }
+                });
+
+
+                //getCategorieNavbar
+
+                var path = "{{ path('categorieproduit_json') }}";
+                $(".card-categ .menu-cat").empty();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: path,
+                    success: function(data){
+                        $.each(data, function(i, categorie) {
+
+                            $(".nav_menuproduct").append('<div class="col-md-4">' +
+                                '<h2>' + categorie['libelle'] + '</h2>');
+
+
+                            $.each(categorie['souscategorieproduits'], function (i, souscategorie) {
+                                $(".nav_menuproduct .col-md-4").append('<a href="">'+souscategorie['libelle']+'</a>' );
+
+                                return i<3;
+
+                            })
+
+                            $(".nav_menuproduct").append('</div>');
+
+
+                        })
+
+                    }
+                });
+
+
+                //getBestSellerProduit
+
+                var path = "{{ path('bestsellerporduit_json') }}";
+                $('#SellerCarousel .carousel-inner .prod-list').empty();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: path,
+                    success: function(data){
+                        $.each(data, function(i, row) {
+                            $("#SellerCarousel .carousel-inner .prod-list").append('<li>' +
+                                '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                '<a href="#">'+
+                                '<img src="../assets/img/product/'+row['firstimg']+'">'+
+                                '</a>'+
+                                '</div>' +
+                                '<div class="col-md-8">'+
+                                '<a href="#" class="ttprod">'+row['libelle']+'</a>'+
+                                '<p class="starprod">'+
+                                '<i class="fa fa-star"></i>'+
+                                '<i class="fa fa-star"></i>'+
+                                '<i class="fa fa-star"></i>'+
+                                '<i class="fa fa-star-o"></i>'+
+                                '<i class="fa fa-star-o"></i>'+
+                                '</p>'+
+                                '<p class="prprod">'+row['prix']+' TND</p>'+
+                                '</div>'+
+                                '</div>' +
+                                '</li>');
+
+                            return i<5
+                        })
+
+                    }
+                });
+
+
+
+                //getCategorieDropDown
+                var path = "{{ path('categorieproduit_json') }}";
+                $.ajax({
+
+                    type: "POST",
+                    dataType: "json",
+                    url: path,
+                    success: function(data){
+                        $.each(data, function(i, categorie){
+
+                            $("#cagetorie_prod").append($('<option>').text(categorie.libelle).attr({'data-name':'categorie','data-code':categorie.id}));
+
+                            $.each(categorie['souscategorieproduits'], function(i, souscategorie){
+                                $("#cagetorie_prod").append($('<option>').text('--'+souscategorie.libelle).attr({'data-name':'souscategorie','data-code':souscategorie.id,'class':'sub_option'}));
+                            })
+                        })
+
+                    }});
+
+
+
+                $(".fa-th-list").click(function(){
+                    document.getElementById("listprod").classList.add("listprod");
+                    $(this).css("color","#333");
+                    $(".fa-th").css("color","#888888");
+
+                });
+                $(".fa-th").click(function(){
+                    document.getElementById("listprod").classList.remove("listprod");
+                    $(this).css("color","#333");
+                    $(".fa-th-list").css("color","#888888");
+                });
+
+
+
+
             });
+
         </script>
+        {% block javascripts %}{% endblock %}
+
+
     </body>
 </html>

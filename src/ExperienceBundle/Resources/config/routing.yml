@@ -1,3 +1,48 @@
 experience_homepage:
-    path:     /
+    path:     /homeexp
     defaults: { _controller: ExperienceBundle:Experience:index }
+
+allPosts:
+    path:     /posts
+    defaults: { _controller: ExperienceBundle:Experience:AfficherAjouter }
+
+postDetail:
+    path:     /postDetail/{id}
+    defaults: { _controller: ExperienceBundle:Experience:PostDetails }
+
+AfficherDash:
+    path:     /admin
+    defaults: { _controller: ExperienceBundle:Dashboard:AfficheDash }
+
+SupprimerDash:
+    path:     /supp/{id}
+    defaults: { _controller: ExperienceBundle:Dashboard:SupprimerDash }
+
+SupprimerExp:
+    path:     /suppexp/{id}
+    defaults: { _controller: ExperienceBundle:Experience:SupprimerExp }
+
+SupprimerComm:
+    path:     /suppcomm/{id}
+    defaults: { _controller: ExperienceBundle:Experience:SupprimerComm }
+
+PDF:
+    path:     /pdf
+    defaults: { _controller: ExperienceBundle:Dashboard:Pdf }
+
+test:
+    path:     /test
+    defaults: { _controller: ExperienceBundle:Experience:test }
+
+MyPosts:
+    path:     /myPosts/{id}
+    defaults: { _controller: ExperienceBundle:Experience:myPosts }
+
+
+Categorie:
+    path:     /categorie/{id}
+    defaults: { _controller: ExperienceBundle:Experience:categorie }
+
+Update:
+    path:     /update/{id}
+    defaults: { _controller: ExperienceBundle:Experience:update }

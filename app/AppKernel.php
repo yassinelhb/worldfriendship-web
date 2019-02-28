@@ -27,6 +27,14 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+			new FOS\MessageBundle\FOSMessageBundle(),
+            new Cengizhan\ViewsCounterBundle\CengizhanViewsCounterBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Egyg33k\CsvBundle\Egyg33kCsvBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+            new PromoBundle\PromoBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
 
         ];
 

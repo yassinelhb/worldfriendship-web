@@ -99,13 +99,19 @@ p {
   font-family: Poppins;
 }
 
-h4.page-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: #333333;
+p.page-title {
+  font-size: 16px;
+  font-weight: 300;
+  color: #000;
   line-height: 30px;
   margin-bottom: 20px;
-  font-family: Poppins;
+  letter-spacing: 1px;
+}
+.page-title a{
+  color: #000;
+}
+.page-title a:hover {
+  color: #114e8e;
 }
 
 .text-primary {
@@ -2211,7 +2217,6 @@ body {
   font-size: 14px;
   font-weight: 300;
   position: relative;
-  margin-bottom: 5px;
   font-family: Poppins;
 }
 .sidebar .nav .nav-item a:hover, .sidebar .nav .nav-item a:focus {
@@ -2231,13 +2236,10 @@ body {
   top: 0;
 }
 .sidebar .nav .nav-item a i {
-  font-size: 23px;
+  font-size: 20px;
   color: #C3C5CA;
-  margin-right: 15px;
-  width: 25px;
-  text-align: center;
-  vertical-align: middle;
-  float: left;
+  right: 15px;
+  position: absolute;
 }
 .sidebar .nav .nav-item a img{
   width: 27px;
@@ -2251,6 +2253,21 @@ body {
   margin-right: 5px;
 }
 
+.sidebar .nav .nav-item .dropdown-menu{
+  position: relative !important;
+  padding: 10px 10px 10px 35px;
+  background: rgba(0,0,0,.2);
+  list-style: none;
+  width: 100%;
+  margin-left: -5px;
+  margin-top: -54px;
+}
+
+.sidebar .nav .nav-item .dropdown-menu a:hover ,.sidebar .nav .nav-item .dropdown-menu a:before
+,.sidebar .nav .nav-item .dropdown-menu a:focus,.sidebar .nav .nav-item .dropdown-menu a{
+  border-left: 0px;
+  background: transparent;
+}
 .main-panel {
   position: relative;
   width: calc(100% - 260px);
@@ -6686,4 +6703,428 @@ body {
   }
 }
 
+table.dataTable thead .sorting:after {
+   content: "";
+  position: absolute;
+}
+
+table.dataTable thead .sorting_asc:after {
+  content: ""
+}
+
+
+
+
+/* product */
+
+.page-product {
+  display: inline-block;
+}
+.btn-rightexport {
+  display: inline-block;
+  float: right;
+}
+.btn-rightexport a {
+  background: #e2e2e2;
+  color: #333;
+  font-weight: 300;
+  padding: 9px 20px;
+  text-decoration: none;
+  margin-left: 5px;
+  border: 1px solid #d5d5d5;
+}
+.btn-rightexport a:hover {
+  background: #d5d5d5;
+}
+.product-view .btn-add-prod {
+  margin-bottom: 55px;
+}
+.product-view .btn-add-prod a {
+  background: #114e8e;
+  padding: 10px;
+  color: #fff;
+  display: block;
+  width: 120px;
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+  text-decoration: none;
+}
+.product-view .btn-add-prod a .fa {
+  -webkit-text-stroke: 1.3px #114e8e;
+}
+
+.product-view .table-bordered {
+   border: 1px solid #e1e1e1 !important;
+}
+.product-view div.dataTables_wrapper div.dataTables_length label {
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  font-family: Poppins;
+}
+
+.product-view div.dataTables_wrapper div.dataTables_length select {
+  height: 42px;
+  border-radius: 0;
+  border: 1px solid #e1e1e1;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+}
+
+.product-view div.dataTables_wrapper div.dataTables_filter input {
+  height: 42px;
+  width: 250px !important;
+  border-radius: 0;
+  border: 1px solid #e1e1e1;
+}
+
+
+.product-view div.dataTables_wrapper div.dataTables_filter label {
+   font-size: 15px !important;
+   font-weight: 300 !important;
+   font-family: Poppins;
+}
+.product-view div.dataTables_wrapper div.dataTables_filter input:focus {
+  border: 1px solid #c1c1c1;
+}
+
+.product-view table.table-bordered.dataTable th {
+  font-size: 16px !important;
+  font-weight: 300 !important;
+}
+.product-view div.dataTables_wrapper div.dataTables_paginate{
+  float: right;
+}
 /*# sourceMappingURL=ready.css.map */
+.pagination > li > a, .pagination > li:first-child > a,
+.pagination > li:last-child > a, .pagination > li > span,
+.pagination > li:first-child > span, .pagination > li:last-child > span {
+  border-radius: 0px !important;
+  margin: 0 !important;
+  padding: 12px 17px !important;
+  font-size: 15px !important;
+  font-weight: 300;
+  color: #333;
+}
+.product-view .page-link:hover {
+  color: #114e8e;
+}
+
+.product-view .page-item.active .page-link {
+  background: #114e8e !important;
+  border: 1px solid #114e8e !important;
+}
+.product-view .page-item.active .page-link:hover {
+  color: #fff;
+}
+div.dataTables_wrapper div.dataTables_info {
+  font-weight: 300 !important;
+  font-size: 15px;
+  color: #000;
+}
+.product-view table.table-bordered.dataTable td {
+  font-weight: 300;
+  font-size: 15px;
+}
+.product-view table.table-bordered.dataTable td.colorprod {
+  text-align: center;
+}
+.product-view table.table-bordered.dataTable td.colorprod span {
+  width: 18px;
+  height: 18px;
+  display: block;
+  margin-left: 26px;
+}
+.product-view table.table-bordered.dataTable td img{
+  width: 75px;
+}
+.product-view table.table-bordered.dataTable td .btn-edit {
+  display: inline-block;
+  background: #114e8e;
+  color: #fff;
+  padding: 7px 12px;
+  font-size: 15px;
+  text-decoration: none;
+}
+.product-view table.table-bordered.dataTable td .btn-delete {
+  display: inline-block;
+  background: #dc2d0e;
+  color: #fff;
+  padding: 7px 12px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.product-view .title-viewprod {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.product-view  .hr-title {
+  width: 100px;
+  height: 3px;
+  display: block;
+  background: #114e8e;
+}
+
+.product-view .form-prod form {
+  width: 100%;
+}
+
+.product-view .form-prod .title-add-prod {
+  font-size: 19px;
+  text-transform: uppercase;
+  color: #979797;
+  padding: 45px 10px;
+}
+
+.product-view .form-prod label {
+  font-size: 16px !important;
+  font-weight: 300;
+  margin-top: 4px;
+}
+.product-view .form-prod input[type=text] , .product-view .form-prod input[type=number],.product-view .form-prod input[type=color], .product-view .form-prod select {
+  border: 1px solid #e1e1e1;
+  height: 42px;
+  font-weight: 300;
+}
+.product-view .form-prod textarea {
+  border: 1px solid #e1e1e1;
+  height: 160px;
+  font-weight: 300;
+
+}
+.product-view .form-prod .addcat ,.product-view .form-prod .addmodal ,.product-view .form-prod .addtype {
+  font-size: 24px;
+  margin-top: 4px;
+  margin-left: 10px;
+  display: block;
+  cursor: pointer;
+  float: right;
+}
+
+.product-view .form-prod .img-form label {
+  display: block;
+}
+.product-view .form-prod .img-form img {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border: 1px solid #e1e1e1;
+  padding: 1px;
+  margin:   5px 15px 5px 0
+
+}
+
+.product-view .form-prod  .btn-addSubmit {
+  background-color: #114e8e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 12px;
+  border: 0px;
+  width: 130px;
+  float: right;
+  margin: 35px;
+}
+
+.product-view .form-prod .img-form .inp-file {
+  display: inline-block;
+  width: 200px;
+  position: relative;
+  margin-top: -20px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.product-view .form-prod .img-form .inp-file input {
+  width: 130px;
+  z-index: 9999;
+  position: absolute;
+  height: 50px;
+  top: -25px;
+  opacity: 0;
+
+
+}
+.product-view .form-prod .img-form .inp-file .styleUpload {
+  position: absolute;
+  top: -25px;
+  left: 0px;
+  font-size: 18px;
+  z-index: 0;
+  color: #000;
+  cursor: pointer !important;
+
+}
+
+.product-view .form-prod .img-form .inp-file .styleUpload img {
+  width: 50px;
+  height: 50px;
+  border: 0px;
+  margin: 0;
+  cursor: pointer !important;
+
+}
+.product-view .form-prod  .typeProd {
+  display: none;
+}
+
+.modal-catProd ,modal-delete {
+  background-color: rgba(0,0,0,.4) ;
+}
+
+
+
+.modal-catProd .modal-dialog, .modal-delete .modal-dialog {
+  max-width: 600px;
+  margin: 5rem auto;
+}
+.modal-catProd .modal-header ,.modal-delete .modal-header {
+  font-size: 17px;
+  font-weight: 400;
+  color: #555;
+}
+.modal-delete .modal-title {
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.modal-delete .modal-body p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #777777;
+  padding-top: 5px;
+}
+.modal-catProd .modal-header .icon-close , .modal-delete .modal-header .icon-close {
+  position: absolute;
+  right: 15px;
+  top: 11px;
+  font-size: 23px;
+  cursor: pointer;
+  background: transparent;
+  opacity: 1;
+}
+.modal-delete .modal-header .icon-close:hover {
+  opacity: 1;
+}
+.modal-delete .modal-header .icon-close .fa{
+  -webkit-text-stroke: 2px #fff;
+  color: #333;
+
+}
+
+
+.modal-delete .modal-footer .btn-delete {
+  background-color: #114e8e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 7px 18px;
+  border: 0px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.modal-delete .modal-footer button.btn-close {
+  background-color: #cfcfcf;
+  color: #000;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 7px 18px;
+  border: 0px;
+}
+.modal-catProd .modal-body input[type=text] {
+  border: 1px solid #e1e1e1;
+  height: 42px;
+  font-weight: 300;
+}
+.modal-catProd .modal-body label {
+  font-size: 16px !important;
+  font-weight: 300;
+  display: block;
+}
+
+.modal-catProd .modal-body #imginp {
+  width: 100px;
+  border: 1px solid #e1e1e1;
+  padding: 1px;
+  margin-right: 15px;
+}
+
+
+.modal-catProd .modal-body .form-group {
+  padding:5px 10px
+}
+.modal-catProd .modal-body .inp-file {
+  display: inline-block;
+}
+
+.modal-catProd .modal-body .inp-file input {
+  width: 130px;
+  z-index: 9999;
+  position: absolute;
+  height: 50px;
+  margin-top: -20px;
+  opacity: 0;
+
+}
+.modal-catProd .modal-body .inp-file .styleUpload {
+  position: absolute;
+  font-size: 18px;
+  z-index: 0;
+  color: #000;
+  cursor: pointer !important;
+  margin-top: -20px;
+}
+
+.modal-catProd .modal-body .inp-file .styleUpload img {
+  width: 50px;
+  height: 50px;
+  border: 0px;
+  margin: 0;
+  cursor: pointer !important;
+
+}
+
+.categorie-view .titlepage {
+  font-size: 50px;
+}
+.categorie-view .form-cat {
+  margin: 60px 15px;
+}
+.categorie-view .form-cat .form-group label {
+  font-size: 16px !important;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-right: 66px;
+  float: right;
+}
+.categorie-view .form-cat .form-group #imgCat {
+  width: 130px;
+  border: 1px solid #e1e1e1;
+  padding: 1px;
+
+}
+.categorie-view .form-cat .form-group .form-control {
+  border: 1px solid #e1e1e1;
+  height: 42px;
+}
+.categorie-view .form-cat .group-btn button {
+    margin-top: 25px;
+    background-color: #114e8e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 12px;
+    border: 0px;
+    width: 130px;
+}
+
+.error-required {
+  position: absolute;
+  display: block;
+  font-size: 14px;
+  color: #e82626;
+  display: none;
+  font-weight: 300;
+}
+

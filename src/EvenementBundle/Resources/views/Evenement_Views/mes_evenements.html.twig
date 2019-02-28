@@ -12,14 +12,16 @@
     </style>
 {% endblock %}
 {% block content %}
-    {% if app.session.flashBag.has('success-sup-modif') %}
-        <div class="alert alert-success">
-            {% for msg in app.session.flashBag.get('success-sup-modif') %}
-                <p align="center">{{ msg }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+
+
     <div class="row">
+        {% if app.session.flashBag.has('success-sup-modif') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success-sup-modif') %}
+                    <p align="center">{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="col-lg-10 col-lg-offset-1">
             <table id="myTable" style="width: 100% !important;"
                    class="table table-bordered table-condensed table-hover table-striped display responsive nowrap">

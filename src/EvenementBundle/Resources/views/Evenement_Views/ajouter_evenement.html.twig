@@ -192,7 +192,7 @@
                 var numericReg = /^[+]?\d+([.]\d+)?$/;
                 if (!numericReg.test(content) && content !== "") {
                     $('#capacite_err').show();
-                    $('#capacite_err').text("Veuillez choisir un entier pour votre capacite").css({
+                    $('#capacite_err').text("Veuillez choisir un entier positif pour votre capacite").css({
                         "font-size": "0.9em",
                         "color": "#d85364"
                     });

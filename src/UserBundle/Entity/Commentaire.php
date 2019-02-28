@@ -22,37 +22,31 @@ class Commentaire
     private $id;
 
     /**
-     *@ORM\ManyToOne (targetEntity="UserBundle\Entity\User")
-     *@ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="contenu_commentaire", type="string", length=255)
      */
-    private $idUser;
-
-    /**
-     *@ORM\ManyToOne (targetEntity="UserBundle\Entity\Evenement", inversedBy="commentaire")
-     *@ORM\JoinColumn(name="id_evenement", referencedColumnName="id")
-     */
-    private $idEvenement;
+    private $contenuCommentaire;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_commentaire", type="date")
+     * @ORM\Column(name="date_commentaire", type="datetimetz")
      */
     private $dateCommentaire;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="string", length=255)
-     */
-    private $contenu;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Etat_Commentaire", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Experience")
+     * @ORM\JoinColumn(name="experience", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $etatCommentaire;
+    private $experience;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    private $user;
 
 
     /**
@@ -66,56 +60,27 @@ class Commentaire
     }
 
     /**
-     * Set idUser
+     * Set contenuCommentaire
      *
-     * @param integer $idUser
+     * @param string $contenuCommentaire
      *
      * @return Commentaire
      */
-    public function setIdUser(\UserBundle\Entity\User $idUser = null)
+    public function setContenuCommentaire($contenuCommentaire)
     {
-        $this->idUser = $idUser;
+        $this->contenuCommentaire = $contenuCommentaire;
 
         return $this;
     }
 
     /**
-     * Get idUser
+     * Get contenuCommentaire
      *
-     * @return int
+     * @return string
      */
-    public function getIdUser()
+    public function getContenuCommentaire()
     {
-        return $this->idUser;
-    }
-
-    /**
-     * Set idEvenement
-     *
-     * @param integer $idEvenement
-     *
-     * @return Commentaire
-     */
-    public function setIdEvenement($idEvenement)
-    {
-        $this->idEvenement = $idEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get idEvenement
-     *
-     * @return int
-     */
-    public function getIdEvenement()
-    {
-        return $this->idEvenement;
-    }
-
-    public function __construct()
-    {
-        $this->dateCommentaire = new \DateTime();
+        return $this->contenuCommentaire;
     }
 
     /**
@@ -143,50 +108,40 @@ class Commentaire
     }
 
     /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return Commentaire
+     * @return mixed
      */
-    public function setContenu($contenu)
+    public function getExperience()
     {
-        $this->contenu = $contenu;
-
-        return $this;
+        return $this->experience;
     }
 
     /**
-     * Get contenu
-     *
-     * @return string
+     * @param mixed $experience
      */
-    public function getContenu()
+    public function setExperience($experience)
     {
-        return $this->contenu;
+        $this->experience = $experience;
     }
 
     /**
-     * Set etatCommentaire
-     *
-     * @param string $etatCommentaire
-     *
-     * @return Commentaire
+     * @return mixed
      */
-    public function setEtatCommentaire($etatCommentaire)
+    public function getUser()
     {
-        $this->etatCommentaire = $etatCommentaire;
-
-        return $this;
+        return $this->user;
     }
 
     /**
-     * Get etatCommentaire
-     *
-     * @return string
+     * @param mixed $user
      */
-    public function getEtatCommentaire()
+    public function setUser($user)
     {
-        return $this->etatCommentaire;
+        $this->user = $user;
     }
+
+
+
+
+
 }
+

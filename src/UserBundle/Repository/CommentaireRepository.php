@@ -10,4 +10,23 @@ namespace UserBundle\Repository;
  */
 class CommentaireRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findCommIdParameter($id){
+        $query = $this->getEntityManager()
+            ->createQuery("select c from UserBundle:Commentaire c 
+            where c.experience=:id")
+            ->setParameter('id',$id);
+        return $query->getResult();
+    }
+
+    public function countComments($id){
+        $query = $this->getEntityManager()
+            ->createQuery("
+            select count(c) 
+            from UserBundle:Commentaire c 
+            where c.experience=:(
+            select e from UserBundle:Experience e 
+            where e.id=:id)")
+            ->setParameter('id',$id);
+        return $query->getResult();
+    }
 }

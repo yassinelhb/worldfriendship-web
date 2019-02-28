@@ -9,6 +9,10 @@ admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
+promo:
+    resource: "@PromoBundle/Resources/config/routing.yml"
+    prefix:   /promo
+
 contact:
     resource: "@ContactBundle/Resources/config/routing.yml"
     prefix:   /
@@ -27,9 +31,12 @@ evenement:
 
 experience:
     resource: "@ExperienceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /exp
 
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix:   /message

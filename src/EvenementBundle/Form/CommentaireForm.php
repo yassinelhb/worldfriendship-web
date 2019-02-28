@@ -24,7 +24,7 @@ class CommentaireForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UserBundle\Entity\Commentaire'
+            'data_class' => 'UserBundle\Entity\CommentaireEvenement'
         ));
     }
 
