@@ -92,8 +92,8 @@ class ExperienceController extends Controller
         $task->setUser($Utilisateur);
         //$task->setDateExp($request->get('dateExp'));
 
-        //rename($_GET["path"], "C:\wamp64\www\worldfriendship\web\\assets\\img\\experience\\uploads\\".$_GET["imageName"]);
-        rename($_GET["path"], "C:\\wamp64\\www\\worldfriendship\\web\\assets\\img\\experience\\uploads\\".$_GET["imageName"]);
+        //rename($_GET["path"], "C:\wamp64\www\worldfriendship-web\web\\assets\\img\\experience\\uploads\\".$_GET["imageName"]);
+        rename($_GET["path"], "C:\\wamp64\\www\\worldfriendship-web\\web\\assets\\img\\experience\\uploads\\".$_GET["imageName"]);
         var_dump($task);
         $em->persist($task);
         $em->flush();

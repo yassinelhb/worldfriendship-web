@@ -91,7 +91,7 @@ fos_user:
     user_class: UserBundle\Entity\User
     from_email:
         address: "yassine.lahbib@esprit.tn"
-        sender_name: "worldfriendship"
+        sender_name: "worldfriendship-web"
 
 #vich bundle upload
 vich_uploader:
