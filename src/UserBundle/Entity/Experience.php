@@ -1,9 +1,8 @@
 <?php
 
 namespace UserBundle\Entity;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Cengizhan\ViewsCounterBundle\Model\VisitableInterface;
 use Cengizhan\ViewsCounterBundle\Traits\VisitableEntityTrait;
@@ -234,7 +233,6 @@ class Experience implements VisitableInterface
 
     public function __construct()
     {
-        $this->image = new EmbeddedFile();
     }
 
     /**

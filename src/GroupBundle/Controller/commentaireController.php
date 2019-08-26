@@ -52,7 +52,7 @@ class commentaireController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         if ($com->getUser()== $user) {
-            $comment = $this->getDoctrine()->getRepository(comment::class)
+            $comment = $this->getDoctrine()->getRepository(Reponse::class)
                 ->find($id);
             $form = $this->createForm(commentType::class, $comment);
             $form->handleRequest($request);

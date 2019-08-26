@@ -45,6 +45,7 @@
                                     </p>
                                     <a href="{{ path('produit_produit',{'id':produit.id}) }}" class="ttprod">{{ produit.libelle }}</a>
                                     <p class="priceprod">{{ produit.prix }} DNT</p>
+                                    <p class="descprod">{{ produit.description }}</p>
                                     <div class="btngroup">
                                         <button class="btn-panier" value="{{ produit.id }}">
                                             <img src="../../assets/img/icons/cart.png" class="firstimg">

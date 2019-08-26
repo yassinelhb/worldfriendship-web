@@ -34,16 +34,18 @@
                                     <div class="comment">
                                         <h5>Nom : {{ f.User.Username }}</h5>
                                         <div class="comment-meta">
-                                            <a>Objet : {{ f.title }}</a>
-                                        </div>
-                                        <blockquote class="post-quote">
-                                        <p>{{ f.description }}</p>
-                                        </blockquote>
-                                        <p class="news-meta" align="right">
-                                            <span>{{ f.date|date }}</span>
-                                            <span><i class="ti-eye"></i> {{ f.singularViewCount }}</span>
+                                            <blockquote class="post-quote">
+                                                <p class="news-meta">
+                                                    <span>{{ f.date|date }}</span>
+                                                    <span><i class="ti-eye"></i> {{ f.singularViewCount }}</span>
 
-                                        </p>
+                                                </p>
+                                            </blockquote>
+                                            <p>Objet : {{ f.title }}</p>
+                                            <p>{{ f.description }}</p>
+                                        </div>
+
+
                                     </div>
                                 </li>
 

@@ -127,13 +127,13 @@
                                     <li class="list-group-item"><span
                                                 class="badge">{{ evenements.descriptionEvenement }}</span> Description
                                     </li>
-                                    <li class="list-group-item">
+                                  <!--  <li class="list-group-item">
                                         <a id="acount-btn" href="{{ path('pdf_evenement',{'id':evenements.id}) }}"> Telecharger les détails en pdf </a>
 
                                         <a  id="acount-btn-r" href="{{  path('envoyer_ticket' , {'id':evenements.id}) }}" {% if check == 0 %} class="not-active"  {% endif %}> Je veux recevoir mon ticket </a>
                                         {#<a  id="acount-btn-r" href="{{  path('envoyer_ticket') }}" {% if check == 0 %} disabled="true"  {% endif %}> Je veux recevoir mon ticket </a>#}
 
-                                    </li>
+                                    </li>-->
 
                                     {# <li class="list-group-item"> <span class="badge">{{ dispo }}</span> Places disponibles </li>#}
                                 </ul>
@@ -147,22 +147,7 @@
 
         <div class="col-lg-10 col-lg-offset-1">
 
-                <div class="comment-wrap">
-                    <div class="photo">
-                        <div class="avatar"
-                             style="background-image: url('https://img.icons8.com/color/48/000000/user-male.png')"></div>
-                    </div>
-                    <div class="comment-block">
-                        {% form_theme formCom 'bootstrap_3_layout.html.twig' %}
-                        {{ form_start(formCom) }}
-                        {{ form_widget(formCom.contenu) }}
-                        <br>
-                        {{ form_widget(formCom.valider)}}
-                        {{ form_end(formCom) }}
 
-
-                    </div>
-                </div>
 
                 {% if evenements.commentaires %}
                     {% for commentaire in evenements.commentaires %}
@@ -183,6 +168,23 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+
+            <div class="comment-wrap">
+                <div class="photo">
+                    <div class="avatar"
+                         style="background-image: url('https://img.icons8.com/color/48/000000/user-male.png')"></div>
+                </div>
+                <div class="comment-block">
+                    {% form_theme formCom 'bootstrap_3_layout.html.twig' %}
+                    {{ form_start(formCom) }}
+                    {{ form_widget(formCom.contenu) }}
+                    <br>
+                    {{ form_widget(formCom.valider)}}
+                    {{ form_end(formCom) }}
+
+
+                </div>
+            </div>
 
 
             </div>

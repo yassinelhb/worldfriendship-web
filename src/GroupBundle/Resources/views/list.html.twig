@@ -29,7 +29,7 @@
 
     <!-- All Blog -->
     {% for f in forum | reverse %}
-            <section class="all-blog section-padding">
+            <section class="all-blog ">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
@@ -40,34 +40,36 @@
                                         <li>
                                             <div class="comment">
                                                 <h5>Nom : {{ f.User.Username }}</h5>
-                                                <div class="comment-meta">
-                                                    <a>Objet : {{ f.title }}</a>
-                                                </div>
+
                                                 <blockquote class="post-quote">
+                                                    <p class="news-meta" align="right">
+                                                        <span>{{ f.date|date }}</span>
+                                                        <a href="{{ path('forums_commentpage',{'id':f.id}) }}">
+                                                            <span> Détails</span>
+                                                        </a>
+                                                        <span><i class="ti-eye"></i> {{ f.singularViewCount }}</span>
+                                                        {% if  f.user == user   %}
+                                                            <a href="{{ path("testmod",{'id':f.id}) }}">
+                                                                <button type="button" data-toggle="modal"
+                                                                        data-target="#squarespaceModal"
+                                                                        title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                            </a>
+                                                            <a href="{{ path("suppAr",{'id':f.id}) }}">
+                                                                <button type="button" data-toggle="tooltip" title="Remove"
+                                                                        class="btn btn-link btn-simple-danger">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                            </a>
+                                                        {% endif %}
+                                                    </p>
+                                                    <div class="comment-meta">
+                                                        <a>Objet : {{ f.title }}</a>
+                                                    </div>
                                                 <p>{{ f.description }}</p>
                                                 </blockquote>
-                                                <p class="news-meta" align="right">
-                                                    <span>{{ f.date|date }}</span>
-                                                    <a href="{{ path('forums_commentpage',{'id':f.id}) }}">
-                                                    <span> Détails</span>
-                                                    </a>
-                                                    <span><i class="ti-eye"></i> {{ f.singularViewCount }}</span>
-                                                    {% if  f.user == user   %}
-                                                    <a href="{{ path("testmod",{'id':f.id}) }}">
-                                                    <button type="button" data-toggle="modal"
-                                                    data-target="#squarespaceModal"
-                                                    title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    </a>
-                                                    <a href="{{ path("suppAr",{'id':f.id}) }}">
-                                                        <button type="button" data-toggle="tooltip" title="Remove"
-                                                                class="btn btn-link btn-simple-danger">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                    </a>
-                                                    {% endif %}
-                                                </p>
+
 
                                             </div>
                                         </li>

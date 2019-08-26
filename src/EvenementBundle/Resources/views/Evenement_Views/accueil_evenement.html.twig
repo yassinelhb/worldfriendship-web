@@ -224,7 +224,7 @@
            }
 
            #cloud-scroll {
-               background: url(http://9a2e1a2047765d2a004e-e6d2db425d8d4f2619e5cee56a48bcef.r55.cf2.rackcdn.com/clouds.png) repeat-x;
+                   background: url(http://9a2e1a2047765d2a004e-e6d2db425d8d4f2619e5cee56a48bcef.r55.cf2.rackcdn.com/clouds.png) repeat-x;
                top: 0;
                left: 0;
                width: 100%;
@@ -293,19 +293,7 @@
 
         </div>
 
-       {% if app.session.flashBag.has('success') %}
-            <div class="alert alert-success">
-                {% for msg in app.session.flashBag.get('success') %}
-                    <p align="center">{{ msg }}
-<a href="https://mail.google.com" target="_blank\">
-                    {% for user in users %}
-                        {{ user.email }}
-                    {% endfor %}
-                    </a> </p>
-                {% endfor %}
 
-            </div>
-        {% endif %}
         <div class="container">
 
             <div class="row">

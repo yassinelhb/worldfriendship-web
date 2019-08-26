@@ -61,50 +61,51 @@
     <link rel="stylesheet" href={{ asset('assets/table.css') }}/>
 
     <!------ Include the above in your HEAD tag ---------->
-    {% for f in categorie %}
-<div class="container">
-    <div class="wrapper">
-        <div class="span7">
-            <div class="widget stacked widget-table action-table">
+        {% for f in categorie %}
+    <div class="container">
+        <div class="wrapper">
+            <div class="span7">
+                <div class="widget stacked widget-table action-table">
 
-                <div class="widget-header">
-                    <i class="icon-th-list"></i>
-                    <h3>
-                        <a href="{{ path('forums_listpage',{'id':f.id}) }}">
-                            {{ f.nom }}
-                        </a>
-                    </h3>
-                </div> <!-- /widget-header -->
-    {% for l in lim %}
-        {% if  l.categorie.nom == f.nom   %}
-                <div class="widget-content">
+                    <div class="widget-header">
+                        <i class="icon-th-list"></i>
+                        <h3>
+                            <a href="{{ path('forums_listpage',{'id':f.id}) }}">
+                                {{ f.nom }}
+                            </a>
+                        </h3>
+                    </div> <!-- /widget-header -->
+        {% for l in lim %}
+            {% if  l.categorie.nom == f.nom   %}
+                    <div class="widget-content">
 
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                        <tr>
-                            <td>
-                                {{ l.title }}
-                                <p class="news-meta" align="right">
-                                    <span>{{ l.date|date }}</span>
-                                    <a href="{{ path('forums_commentpage',{'id':l.id}) }}">
-                                    <span> Détail</span>
-                                    </a>
-                                    <span><i class="ti-eye"></i> {{ l.singularViewCount }}</span>
-                                </p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    {{ l.title }}
+                                    <p class="news-meta" align="right">
+                                        <span>{{ l.date|date }}</span>
+                                        <a href="{{ path('forums_commentpage',{'id':l.id}) }}">
+                                        <span> Détail</span>
+                                        </a>
+                                        <span><i class="ti-eye"></i> {{ l.singularViewCount }}</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                </div> <!-- /widget-content -->
-        {% endif %}
-    {% endfor %}
-            </div> <!-- /widget -->
+                    </div> <!-- /widget-content -->
+            {% endif %}
+        {% endfor %}
+                </div> <!-- /widget -->
+            </div>
         </div>
     </div>
-</div>
-    {% endfor %}
+        {% endfor %}
 
 
+    </section>
 
 {% endblock %}

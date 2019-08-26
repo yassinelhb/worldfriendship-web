@@ -8,6 +8,11 @@ class DashboardController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AdminBundle:Dashboard:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $produits= $em->getRepository('ProduitBundle:Produit')->findAll();
+
+        return $this->render('AdminBundle:Dashboard:index.html.twig',array('produits'=>$produits));
     }
+
 }

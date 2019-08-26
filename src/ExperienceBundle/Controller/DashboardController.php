@@ -12,8 +12,11 @@ namespace ExperienceBundle\Controller;
 use Knp\Bundle\SnappyBundle\Snappy\Response\JpegResponse;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use UserBundle\Entity\Commentaire;
 use UserBundle\Entity\Experience;
 use UserBundle\Form\CommentaireType;
@@ -42,6 +45,22 @@ class DashboardController extends Controller
         return $this->render('@Experience/admin.html.twig', array('exp'=>$res));
     }
 
+    public function AfficheDashMobileAction(Request $request)
+    {
+        $exp=$this->getDoctrine()->getRepository(Experience::class)->findAll();
+        $serializer = new Serializer ([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($exp);
+        return new JsonResponse($formatted);
+    }
+
+    public function FindDashMobileAction($id)
+    {
+        $exp=$this->getDoctrine()->getRepository(Experience::class)->findIdParameter($id);
+        $serializer = new Serializer ([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($exp);
+        return new JsonResponse($formatted);
+    }
+
     Public function SupprimerDashAction($id)
     {
         $em=$this->getDoctrine()->getManager();
@@ -50,6 +69,18 @@ class DashboardController extends Controller
         $em->flush();
         return $this->redirectToRoute("AfficherDash");
     }
+
+    Public function SupprimerExpMobileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository(Experience::class)->find($id);
+        $em->remove($exp);
+        $em->flush();
+        $serializer = new Serializer ([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($exp);
+        return new JsonResponse($formatted);
+    }
+
 
     public function PdfAction()
     {

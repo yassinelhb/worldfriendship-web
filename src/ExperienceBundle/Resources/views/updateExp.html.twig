@@ -24,36 +24,47 @@
                 <div class="col-md-10 col-md-offset-1">
 
                     <div class="single-blog-content">
-                        <div>
-                            <div class="container">
-                            {{ form_start(form) }}
-                            <ul class="breadcrumbs">
-                                <li><a href="">Titre</a></li>
-                                <li>&mdash;</li>
-                                <li>{{ form_widget(form.nomExp) }}</li><br>
+                        <div class="container">
+                            <div class="row col-lg-6">
+                                <div class="breadcrumbs">
 
-                                <li><a href="">Description</a></li>
-                                <li>&mdash;</li>
-                                <li>{{ form_widget(form.descExp) }}</li>
+                                    {{ form_start(form) }}
+                                    <div class="form-group">
+                                         <label>Titre</label>
+                                        {{ form_widget(form.nomExp, { 'attr': {'class': 'form-control'} }) }}
 
-                                <li><a href="">Lieu</a></li>
-                                <li>&mdash;</li>
-                                <li>{{ form_widget(form.lieuExp) }}</li>
+                                    </div>
 
-                                <li><a href="">Categorie</a></li>
-                                <li>&mdash;</li>
-                                <li>{{ form_widget(form.categorie) }}</li><br>
-                                {{ form_widget(form.imageFile) }}
-                                {{ form_widget(form.Partager, {'attr': {'class': 'btn-default btn-small btn-fill'}}) }}
-                                {{ form_end(form) }}
-                            </ul>
-                            <br>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        {{ form_widget(form.descExp, { 'attr': {'class': 'form-control'} }) }}
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Lieu</label>
+                                        {{ form_widget(form.lieuExp, { 'attr': {'class': 'form-control'} }) }}
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Categorie</label>
+                                        {{ form_widget(form.categorie, { 'attr': {'class': 'form-control'} }) }}
+
+                                    </div>
+                                    {{ form_widget(form.imageFile) }}
+                                    {{ form_widget(form.Partager, {'attr': {'class': 'btn-default btn-small btn-fill'}}) }}
+                                    {{ form_end(form) }}
+
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
+        </section>
 
     <!-- All Blog -->
 {% endblock %}

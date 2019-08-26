@@ -7128,3 +7128,28 @@ div.dataTables_wrapper div.dataTables_info {
   font-weight: 300;
 }
 
+
+.flash-notice {
+  width: 100%;
+  position: absolute;
+  z-index: 9999;
+  height: 67px;
+  background: #114e8e;
+  text-align: center;
+  line-height: 67px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.menu-event {
+  list-style: none;
+  background: rgba(0,0,0,0.4);
+}
+
+.menu-event li a{
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+}

@@ -10,4 +10,17 @@ namespace ProduitBundle\Repository;
  */
 class LikeProduitRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getTopProduct(){
+
+        $query= $this->createQueryBuilder('s')
+            ->select('l, count(l.id) AS HIDDEN nbLike')
+            ->from('ProduitBundle:LikeProduit', 'l')
+            ->groupBy('l.id')
+            ->orderBy("nbLike", 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
 }
+

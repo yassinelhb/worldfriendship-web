@@ -47,7 +47,7 @@ class SousCategorieProduitController extends Controller
             $sousCategorieProduit->setCreated( new DateTime());
             $em->persist($sousCategorieProduit);
             $em->flush();
-
+            $this->addFlash("success", "Success");
             return $this->redirectToRoute('souscategorieproduit_index');
         }
 
@@ -83,7 +83,7 @@ class SousCategorieProduitController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash("success", "Success");
             return $this->redirectToRoute('souscategorieproduit_index');
         }
 
@@ -129,7 +129,7 @@ class SousCategorieProduitController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $id_categorie = $request->request->get('categorie');
-        $categorie= $em->getRepository('ProduitBundle:SousCategorieProduit')->find($id_categorie);
+        $categorie= $em->getRepository('ProduitBundle:CategorieProduit')->find($id_categorie);
 
         $souscategorie= $em->getRepository('ProduitBundle:SousCategorieProduit')->findBy(array('categorie'=>$categorie));
 

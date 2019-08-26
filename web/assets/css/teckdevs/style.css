@@ -25,6 +25,7 @@ font-family: 'Quicksand', sans-serif;
 
 
 
+
 /*------------------------------------------------------------------------
 [Table of Contents]
 
@@ -1710,6 +1711,7 @@ p {
 }
 .comment:last-child {
 	border-bottom:0px solid #ddd;
+	display: flex;
 }
 .comment-photo {
 	width: 15%;
@@ -5059,6 +5061,19 @@ button.close {
 	position: relative;
 }
 
+.btn-dashborad {
+	position: absolute;
+	right: 0;
+	padding: 14px 19px;
+	top: 40%;
+	border-bottom-left-radius: 7px;
+	font-size: 26px;
+	background: #333;
+	color: #fff;
+	border-top-left-radius: 7px;
+	z-index: 9999;
+}
+
 .float{
 	position:fixed;
 	width:60px;
@@ -5070,11 +5085,27 @@ button.close {
 	border-radius:50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
+	z-index: 9999;
 }
 
 .my-float{
 	margin-top:22px;
 }
 
-
+.how-works {
+	padding: 45px
+}
+.section-padding {
+	padding: 45px
+}
+.news-box-hover {
+	margin: 5px;
+}
+.widget {
+	margin-top: 25px;
+}
+.widget .widget-content {
+	border-radius: 0px !important;
+	border-color: transparent !important;
+}
 /* End of Stylesheet */

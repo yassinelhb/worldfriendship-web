@@ -75,6 +75,10 @@ bestsellerporduit_json:
   defaults: { _controller: ProduitBundle:Produit:getBestSellerProduit }
   methods:  POST
 
+topporduit_json:
+  path:     /topProduit
+  defaults: { _controller: ProduitBundle:Produit:topProduit }
+  methods:  GET
 
 
 produit_produit:

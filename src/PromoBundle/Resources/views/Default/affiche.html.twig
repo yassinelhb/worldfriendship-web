@@ -18,6 +18,12 @@
             <link rel="stylesheet" href="/assets/css/teckdevs/magnific-popup.css">
             <link rel="stylesheet" href="/assets/css/teckdevs/meanmenu.css">
             <link rel="stylesheet" href="/assets/css/teckdevs/swiper.min.css">
+
+            <style>
+                .card-prod:hover .card-body .btngroup {
+                    bottom: 0px !important;
+                }
+            </style>
         </head>
         <body>
 
@@ -27,12 +33,19 @@
                 </div>
             </div>
         </div>
-        <li class="active">
-            <a data-toggle="tab" href="#present">
-                Produit Soldé
 
-            </a>
-        </li>
+        <section class="custom-hero-area dark-overlay" data-parallax="scroll" data-speed="0.6" data-image-src="/assets/img/6.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="custom-hero">
+                            <h2> Produit Soldé</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 
         <div class="page-wrapper">
@@ -41,71 +54,55 @@
 
                 <div class="section-prod">
 
+                    <div class="container">
+                        <div class="row">
+                            {% for var in d %}
 
-                    <div class="tab-content">
+                                <div class="card card-prod col-md-3">
 
-                        <div id="present" class="tab-pane fade in active">
+                                    <div class="card-img">
 
-                            <div class="carousel slide" id="newprodCarousel">
+                                        <p align="center" class="feu">-{{ var.pourcentage }}% </p>
+                                        <img src="../assets/img/product/{{ var.produit.firstimg }}" >
+                                    </div>
+                                    <div class="card-body">
 
-                                <div class="carousel-inner">
-
-                                    <div class="item active">
-                                        {% for var in d %}
-
-
-
-                                            <div class="card card-prod col-md-2">
-
-                                                <div class="card-img">
-
-                                                    <p align="center" class="feu">-{{ var.pourcentage }}% </p>
-                                                    <img src="{{ var.produit.firstimg }}.jpg" class="firstimg">
-                                                    <img src="../assets/img/product/{{ var.produit.id }}.jpg"
-                                                         class="secondimg">
-                                                </div>
-                                                <div class="card-body">
-
-                                                    <p class="starprod">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </p>
+                                        <p class="starprod">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </p>
 
 
-                                                    <a href="#" class="ttprod">{{ var.produit.libelle }}</a>
-                                                    <p class="priceprod"> {{ var.prixPromo }} DT</p>
-                                                    <strike><p class="priceprod"> {{ var.prixInitiale }} DT</p></strike>
-                                                    <p class="priceprod"> Jusqu'a {{ var.dateFin|date("D/M/Y") }} </p>
+                                        <a href="#" class="ttprod">{{ var.produit.libelle }}</a>
+                                        <p class="priceprod"> {{ var.prixPromo }} DT</p>
+                                        <strike><p class="priceprod"> {{ var.prixInitiale }} DT</p></strike>
+                                        <p class="priceprod"> Jusqu'a {{ var.dateFin|date("D/M/Y") }} </p>
 
 
-                                                    <div class="btngroup">
-                                                        <div class="btn-panier">
-                                                            <img src="../assets/img/icons/cart.png" class="firstimg">
-                                                            <img src="../assets/img/icons/cartwhite.png"
-                                                                 class="secondimg">
-                                                        </div>
-                                                        <div class="btn-view">
-                                                            <img src="../assets/img/icons/eye.png" class="firstimg">
-                                                            <img src="../assets/img/icons/eyewhite.png"
-                                                                 class="secondimg">
-                                                        </div>
-                                                        <div class="btn-hear">
-                                                            <img src="../assets/img/icons/heart.png" class="firstimg">
-                                                            <img src="../assets/img/icons/heartwhite.png"
-                                                                 class="secondimg">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
+                                        <div class="btngroup">
+                                            <button class="btn-panier" value="{{ var.produit.id }}">
+                                                <img src="../assets/img/icons/cart.png" class="firstimg">
+                                                <img src="../assets/img/icons/cartwhite.png" class="secondimg">
+                                            </button>
+                                            <button class="btn-view" value="{{ var.produit.id }}">
+                                                <img src="../assets/img/icons/eye.png" class="firstimg">
+                                                <img src="../assets/img/icons/eyewhite.png" class="secondimg">
+                                            </button>
+                                            <button class="btn-heart" value="{{ var.produit.id }}">
+                                                <img src="../assets/img/icons/heart.png" class="firstimg">
+                                                <img src="../assets/img/icons/heartwhite.png" class="secondimg">
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
                     </div>
+
                 </div>
             </section>
         </div>

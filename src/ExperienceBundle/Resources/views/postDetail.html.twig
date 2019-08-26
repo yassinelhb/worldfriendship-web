@@ -33,7 +33,11 @@
                             <li>{{ d.user }}</li><br>
                             <li><a href="">Catégorie</a></li>
                             <li>&mdash;</li>
-                            <li>{{ d.categorie.nom }}</li><br>
+                            {% if  e.categorie.nom is not defined %}
+                                <li>{{ "Randonnée" }}</li><br>
+                            {% else %}
+                                <li>{{ d.categorie.nom }}</li><br>
+                            {% endif %}
                             <li><a href="">Lieu</a></li>
                             <li>&mdash;</li>
                             <li>{{ d.lieuExp }}</li><br>

@@ -44,12 +44,14 @@ class GestionProduitController extends Controller
             $id_souscategorie =  $request->request->get('souscategorie');
             $souscategorie= $em->getRepository('ProduitBundle:SousCategorieProduit')->find($id_souscategorie);
             $produit->setSouscategorie($souscategorie);
+            $produit->setPromotion(0);
             $produit->setCreated( new DateTime());
-
 
 
             $em->persist($produit);
             $em->flush();
+
+            $this->addFlash("success", "Success");
 
             return $this->redirectToRoute('produit_index');
         }
@@ -93,6 +95,7 @@ class GestionProduitController extends Controller
 
             $em->flush();
 
+            $this->addFlash("success", "Success");
 
             return $this->redirectToRoute('produit_index');
         }

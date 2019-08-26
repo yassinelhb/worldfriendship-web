@@ -55,6 +55,27 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function getRandom(){
+        $max = $this->_em->createQuery('SELECT MAX(p.id)
+                                FROM ProduitBundle:Produit p'
+        )->getSingleScalarResult();
+
+        $query = $this->_em->createQuery('SELECT p
+                               FROM ProduitBundle:Produit p
+                               WHERE p.id >= :rand')->setParameter('rand' , rand(0,$max))
+            ->setMaxResults(12);
+
+        return $query->getResult();
+    }
+
+    public function findByOrder(){
+
+         $query= $this->createQueryBuilder('p')
+             ->orderBy('p.id', 'DESC');
+        return $query->getQuery()->getResult();
+    }
+
+
     public function getBestSeller(){
 
         $query= $this->createQueryBuilder('p')
@@ -62,6 +83,8 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+
 
 
 }

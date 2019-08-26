@@ -9,10 +9,7 @@
                     <div class="custom-hero">
                         <div class="section-title">
                             <h2>Centre <span>d'EXPÉRIENCES</span></h2>
-                            <!-- Search form -->
-                            <div class="active-cyan-3 active-cyan-4 mb-4">
-                                <input class="form-control" type="text" placeholder="Rechercher" aria-label="Search">
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -38,29 +35,40 @@
     <!-- News Area -->
     <section class="news-area section-padding ">
         <div class="container">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class="section-title">
-                        <h2>Publications <span>Récentes</span></h2>
-                    </div>
+            <div class="col-md-offset-3 col-md-6">
+                <div class="section-title">
+                    <h2>Publications <span>Récentes</span></h2>
                 </div>
-                {% for e in experience | reverse %}
-                    <div class="col-md-4 col-sm-6 col-xs-12 ">
-                        <a class="news-box-hover" href="{{ path('postDetail',{'id':e.id}) }}">
-                            <div class="news-box"
-                                 style="background:url({{ vich_uploader_asset(e, 'imageFile') }}) no-repeat;">
-                                <div class="news-data">
-                                    <p class="news-cat">{{ e.categorie.nom }}</p>
-                                    <h2>{{ e.nomExp }}</h2>
-                                    <p class="news-meta">
-                                        <span>{{ e.dateExp|date }}</span>
-                                        <span><i class="ti-eye"></i> {{ e.SingularViewCount }}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
             </div>
+            {% for e in experience | reverse %}
+
+                <div class="col-md-4 col-sm-6 col-xs-12 ">
+                    <a class="news-box-hover" href="{{ path('postDetail',{'id':e.id}) }}">
+                        <div class="news-box"
+                             style="background:url({{ vich_uploader_asset(e, 'imageFile') }}) no-repeat;">
+                            <div class="news-data">
+
+                                {% if  e.categorie.nomCategorie is not defined %}
+                                    <p class="news-cat">{{ "Randonnée" }}</p>
+                                {% else %}
+                                    <p class="news-cat">{{ e.categorie.nom }}</p>
+                                {% endif %}
+
+
+                                <h2>{{ e.nomExp }}</h2>
+                                <p class="news-meta">
+                                    <span>{{ e.dateExp|date }}</span>
+                                    <span><i class="ti-eye"></i> {{ e.SingularViewCount }}</span>
+                                </p>
+
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+            {% endfor %}
+        </div>
     </section>
 
     {# display navigation #}
@@ -95,29 +103,30 @@
                     <!-- content goes here -->
                     {{ form_start(form) }}
                     <h2>Créez votre publication</h2>
+
                     <div class="form-group">
                         <label for="title">Titre <span class="require">*</span></label>
-                        <ul>{{ form_widget(form.nomExp) }}</ul>
+                        <ul>{{ form_widget(form.nomExp,{ 'attr': {'class': 'form-control'} }) }}</ul>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description<span class="require">*</span></label>
-                        <ul>{{ form_widget(form.descExp) }}</ul>
+                        <ul>{{ form_widget(form.descExp,{ 'attr': {'class': 'form-control'} }) }}</ul>
                     </div>
 
                     <div class="form-group">
                         <label for="lieu">Lieu<span class="require">*</span></label>
-                        <ul>{{ form_widget(form.lieuExp) }}</ul>
+                        <ul>{{ form_widget(form.lieuExp,{ 'attr': {'class': 'form-control'} }) }}</ul>
                     </div>
 
                     <div class="form-group">
                         <label for="categorie">Categorie<span class="require">*</span></label>
-                        <ul> {{ form_widget(form.categorie) }}</ul>
+                        <ul> {{ form_widget(form.categorie,{ 'attr': {'class': 'form-control'} }) }}</ul>
                     </div>
 
                     <div class="form-group">
                         <label for="image">Image<span class="require">*</span></label>
-                        <ul>{{ form_widget(form.imageFile) }}</ul>
+                        {{ form_widget(form.imageFile) }}
                     </div>
 
                     <br>

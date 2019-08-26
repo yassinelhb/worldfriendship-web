@@ -25,17 +25,20 @@ class ProduitController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $produits = $em->getRepository('ProduitBundle:Produit')->findAll();
+        $produits = $em->getRepository('ProduitBundle:Produit')->findByOrder();
+        $randproduits = $em->getRepository('ProduitBundle:Produit')->getRandom();
         $categorie = $em->getRepository('ProduitBundle:CategorieProduit')->findAll();
 
+
         return $this->render('@Produit/index.html.twig', array(
-            'produits' => $produits,'categorie' => $categorie
+            'produits' => $produits,'categorie' => $categorie,'randproduits'=>$randproduits
         ));
     }
 
     public function categorieAction(Request $request,$id)
     {
         $em = $this->getDoctrine()->getManager();
+        $categorie =  $em->getRepository('ProduitBundle:CategorieProduit')->find($id);
         $produits = $em->getRepository('ProduitBundle:Produit')->findByCategorie($id);
 
         $paginator = $this->get('knp_paginator');
@@ -44,7 +47,7 @@ class ProduitController extends Controller
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 4)
         );
-        return $this->render('@Produit/categorie.html.twig',array('produits'=>$pagination));
+        return $this->render('@Produit/categorie.html.twig',array('produits'=>$pagination,'categorie'=>$categorie));
     }
 
     public function produitAction($id)
@@ -163,6 +166,23 @@ class ProduitController extends Controller
         $serializer = new Serializer($normalizers);
 
         $data = $serializer->normalize($produits);
+
+        return new JsonResponse($data);
+    }
+
+    public function topProduitAction(){
+
+        $em = $this->getDoctrine()->getManager();
+        $likes = $em->getRepository('ProduitBundle:LikeProduit')->getTopProduct();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
+
+        $data = $serializer->normalize($likes);
 
         return new JsonResponse($data);
     }

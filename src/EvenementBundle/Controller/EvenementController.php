@@ -235,7 +235,7 @@ class EvenementController extends Controller
         $snappy = $this->get('knp_snappy.pdf');
 
         $html = "<h1 style=\"background-color:powderblue;\" align='center'> Evenement : " . $evenement->getNomEvenement() .
-            "  </h1> <h1> Bonjour Monsieur  : " . $user . " </h1>  <p>" . $evenement->getDureeEvenement() . "</p>";
+            "  </h1> <h1> Bonjour Monsieur  : " . $user . " </h1>  <p> cet evenement dura " . $evenement->getDureeEvenement() . "</p>";
         $filename = 'pdf ' . $evenement->getNomEvenement();
 
         return new Response(
@@ -287,9 +287,9 @@ class EvenementController extends Controller
                 'dureeEvenement' => $evenement->getDureeEvenement(),
                 'lieuEvenement' => $evenement->getLieuEvenement(),
                 'Affiche' => '<img class="resize" src="../Evenement/image/affiches/' . $evenement->getAffiche() . '"/>',
-                'Action' => "<a href=" . $this->generateUrl('details_evenement', ['id' => $evenement->getId()]) . " target=\"_blank\"><img src=\"https://img.icons8.com/ios/26/000000/show-property.png\"> </a>
-              <a href=" . $this->generateUrl('modifier_evenement', ['id' => $evenement->getId()]) . " target=\"_blank\"><img src=\"https://img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>
-                <a href=" . $this->generateUrl('supprimer_evenement', ['id' => $evenement->getId()]) . "><img src=\"https://img.icons8.com/material/26/000000/trash.png\"></a>"
+                'Action' => "<a href=" . $this->generateUrl('details_evenement', ['id' => $evenement->getId()]) . " target=\"_blank\"><img src=\"https:/img.icons8.com/ios/26/000000/show-property.png\"> </a>
+              <a href=" . $this->generateUrl('modifier_evenement', ['id' => $evenement->getId()]) . " target=\"_blank\"><img src=\"https:/img.icons8.com/ios-glyphs/20/000000/services.png\"> </a>
+                <a href=" . $this->generateUrl('supprimer_evenement', ['id' => $evenement->getId()]) . "><img src=\"https:/img.icons8.com/material/26/000000/trash.png\"></a>"
             ];
 
         }
@@ -517,6 +517,7 @@ class EvenementController extends Controller
             return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);
         }
     */
-
+/////////////////////////////////////////////////////////////////////////////
+///
 
 }

@@ -35,7 +35,7 @@ class AppKernel extends Kernel
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new PromoBundle\PromoBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
-
+            new ApiBundle\ApiBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

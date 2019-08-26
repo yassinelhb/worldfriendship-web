@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
 
+
+        <link rel="stylesheet" href="{{ asset ('Evenement/css/jquery.dataTables.min.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/teckdevs/themify-icons.css') }}">
@@ -116,19 +118,23 @@
                 </div>
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
-                        <img src="../assets/img/logow.png" />
+                        <img src="../../../assets/img/logow.png" />
                     </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ path('experience_homepage') }}">Home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <li><a href="{{ path('experience_homepage') }}"> Accueil <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul>
+                                <li><a href="{{ path('allPosts') }}">Experiences</a></li>
+                                <li><a href="#">Mes experiences</a></li>
+
+                            </ul>
                         </li>
                         <li><a href="/product">Product <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                            <ul>
+                            <ul class="nav_menuproduct">
                                 <li><a href="{{ path('Produit_solde') }}">produit soldé</a></li>
-                                <li><a href="about-02.html">About Us 2</a></li>
                             </ul>
                         </li>
                         <li><a href="/group">Forum <i class="fa fa-angle-down" aria-hidden="true"></i> </a>
@@ -138,7 +144,7 @@
                             </ul>
 
                         </li>
-                        <li><a href="{{ path('accueil_evenement') }}"> event <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <li><a href="{{ path('accueil_evenement') }}"> Evenement <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             <ul>
                                 <li><a href="{{ path('accueil_evenement') }}">Accueil</a></li>
                                 <li><a href="{{ path('afficher_mes_evenements') }}">Mes Evénement </a></li>
@@ -152,12 +158,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="searchbtn btnopen">
-                                <img src="../assets/img/icons/search.png">
+                                <img src="../../../assets/img/icons/search.png">
                             </a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img src="../assets/img/icons/user.png">
+                                <img src="../../../assets/img/icons/user.png">
                             </a>
                             <ul class="dropdown-menu user-setting">
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -184,7 +190,7 @@
                         </li>
                         <li>
                             <a href="#" class="mypanier">
-                                <img src="../assets/img/icons/shopmarket.png">
+                                <img src="../../../assets/img/icons/shopmarket.png">
                                 <span id="countpanier"></span>
                             </a>
                         </li>
@@ -283,12 +289,12 @@
                         success: function (data) {
 
 
-                            $(".modal-product .prodimg1").attr('src','../assets/img/product/'+data.firstimg)
-                            $(".modal-product .prodimgitem1").attr('src','../assets/img/product/'+data.firstimg)
-                            $(".modal-product .prodimg2").attr('src','../assets/img/product/'+data.secondimg)
-                            $(".modal-product .prodimgitem2").attr('src','../assets/img/product/'+data.secondimg)
-                            $(".modal-product .prodimg3").attr('src','../assets/img/product/'+data.thirdimg)
-                            $(".modal-product .prodimgitem3").attr('src','../assets/img/product/'+data.thirdimg)
+                            $(".modal-product .prodimg1").attr('src','../../../assets/img/product/'+data.firstimg)
+                            $(".modal-product .prodimgitem1").attr('src','../../../assets/img/product/'+data.firstimg)
+                            $(".modal-product .prodimg2").attr('src','../../../assets/img/product/'+data.secondimg)
+                            $(".modal-product .prodimgitem2").attr('src','../../../assets/img/product/'+data.secondimg)
+                            $(".modal-product .prodimg3").attr('src','../../../assets/img/product/'+data.thirdimg)
+                            $(".modal-product .prodimgitem3").attr('src','../../../assets/img/product/'+data.thirdimg)
                             $(".modal-product .title-prod").append(data.libelle)
                             $(".modal-product .priceprod").append(data.prix+" TND")
                             $(".modal-product .descprod").append(data.description)
@@ -398,7 +404,7 @@
                                         '<a href="'+url+'">' +
                                         '<div class="row">' +
                                         '<div class="col-md-3">' +
-                                        '<img src="../assets/img/product/'+row['firstimg']+'">' +
+                                        '<img src="../../../assets/img/product/'+row['firstimg']+'">' +
                                         '</div>' +
                                         '<div class="col-md-9 info-prod">' +
                                         '<h2 href="#" class="ttprod">' + row['libelle'] + '</h2>' +
@@ -452,10 +458,10 @@
                                 $(".body-panier").prepend(' <div class="item-panier"> ' +
                                     '<div class="row">' +
                                     '<div class="col-md-4">' +
-                                    '<img src="../assets/img/product/'+row['produit']['firstimg']+ '">' +
+                                    '<img src="../../../assets/img/product/'+row['produit']['firstimg']+ '">' +
                                     '</div>' +
                                     '<div class="col-md-8 prod-info">' +
-                                    '<button class="btn-delete deletePanier" value="'+row['id']+'"><img src="../assets/img/icons/trash.png"></button>' +
+                                    '<button class="btn-delete deletePanier" value="'+row['id']+'"><img src="../../../assets/img/icons/trash.png"></button>' +
                                     '<a class="titleprod" href="'+url+'">'+row['produit']['libelle']+ '</a>' +
                                     '<p class="tailleprod">Taille: '+row['produit']['taille']+ '</p>' +
                                     '<p class="colorprod">Couleur: <span style="background: '+row['produit']['color']+'" ></p>' +
@@ -708,32 +714,12 @@
                     success: function(data){
                         $.each(data, function(i, categorie) {
 
+                            var url =  '{{  path('produit_categorie',{'id':'id','page':'1'})}}';
+                            url = url.replace("id",categorie['id']);
+
                             $(".card-categ .menu-cat").append('<li>' +
-                                '<a href="">' + categorie['libelle']+
-                                '<i class="fa fa-angle-right"></i>'+
-                                '</a>'+
-                                '<div class="menudrop">'+
-                                '<div class="row">');
-
-                            $.each(categorie['souscategorieproduits'], function (i, souscategorie) {
-                                $(".card-categ .menu-cat .menudrop").append('<div class="col-md-4">' +
-                                    '<h2>' + souscategorie['libelle'] + '</h2>' +
-                                    '<span class="hr-menu"></span>'+
-                                    '<ul class=listcat>' );
-
-                                $.each(souscategorie['produits'], function (i, produits) {
-                                    $(".card-categ .menu-cat .menudrop .listcat").append('<li>' +
-                                        '<a href="">'+produits['libelle']+'</a>'+
-                                        '</li>');
-                                    return i<2;
-
-                                })
-
-                                $(".card-categ .menu-cat .menudrop").append('</ul>' +
-                                    '</div>' );
-                            })
-
-                            $(".card-categ .menu-cat").append('</div></div></li>') ;
+                                '<a href="'+url+'">' + categorie['libelle']+ '</a>'+
+                                '</li>') ;
 
                         })
 
@@ -751,17 +737,11 @@
                     url: path,
                     success: function(data){
                         $.each(data, function(i, categorie) {
+                            var url =  '{{  path('produit_categorie',{'id':'id','page':'1'})}}';
+                            url = url.replace("id",categorie['id']);
 
                             $(".nav_menuproduct").append('<div class="col-md-4">' +
-                                '<h2>' + categorie['libelle'] + '</h2>');
-
-
-                            $.each(categorie['souscategorieproduits'], function (i, souscategorie) {
-                                $(".nav_menuproduct .col-md-4").append('<a href="">'+souscategorie['libelle']+'</a>' );
-
-                                return i<3;
-
-                            })
+                                '<a href="'+url+'"><h2>' + categorie['libelle'] + '</h2></a>');
 
                             $(".nav_menuproduct").append('</div>');
 
@@ -775,22 +755,25 @@
                 //getBestSellerProduit
 
                 var path = "{{ path('bestsellerporduit_json') }}";
-                $('#SellerCarousel .carousel-inner .prod-list').empty();
+                $('.best-seller').empty();
                 $.ajax({
                     type: "POST",
                     dataType: "json",
                     url: path,
                     success: function(data){
                         $.each(data, function(i, row) {
-                            $("#SellerCarousel .carousel-inner .prod-list").append('<li>' +
+                            var url =  '{{ path("produit_produit",{'id':'id'}) }}';
+                            url = url.replace("id",row['id']);
+
+                            $(".best-seller").append('<li>' +
                                 '<div class="row">'+
                                 '<div class="col-md-4">'+
-                                '<a href="#">'+
-                                '<img src="../assets/img/product/'+row['firstimg']+'">'+
+                                '<a href="'+url+'">'+
+                                '<img src="../../../assets/img/product/'+row['firstimg']+'">'+
                                 '</a>'+
                                 '</div>' +
                                 '<div class="col-md-8">'+
-                                '<a href="#" class="ttprod">'+row['libelle']+'</a>'+
+                                '<a href="'+url+'" class="ttprod">'+row['libelle']+'</a>'+
                                 '<p class="starprod">'+
                                 '<i class="fa fa-star"></i>'+
                                 '<i class="fa fa-star"></i>'+
@@ -804,6 +787,50 @@
                                 '</li>');
 
                             return i<5
+                        })
+
+                    }
+                });
+
+
+                //getTOPProduit
+
+                var path = "{{ path('topporduit_json') }}";
+                $('.top-produit').empty();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: path,
+                    success: function(data){
+
+                        $.each(data, function(i, row) {
+
+                            var url =  '{{ path("produit_produit",{'id':'id'}) }}';
+                            url = url.replace("id",row['produit']['id']);
+
+                            $(".top-produit").append('<li>' +
+                                '<div class="row">' +
+                                '<div class="col-md-4">' +
+                                '<a href="'+url+'">' +
+                                '<img src="../../../assets/img/product/' + row['produit']['firstimg'] + '">' +
+                                '</a>' +
+                                '</div>' +
+                                '<div class="col-md-8">' +
+                                '<a href="'+url+'" class="ttprod">' + row['produit']['libelle'] + '</a>' +
+                                '<p class="starprod">' +
+                                '<i class="fa fa-star"></i>' +
+                                '<i class="fa fa-star"></i>' +
+                                '<i class="fa fa-star"></i>' +
+                                '<i class="fa fa-star-o"></i>' +
+                                '<i class="fa fa-star-o"></i>' +
+                                '</p>' +
+                                '<p class="prprod">' + row['produit']['prix'] + ' TND</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>');
+
+                            return i < 5;
+
                         })
 
                     }
@@ -850,7 +877,7 @@
             });
 
         </script>
-        {% block javascripts %}{% endblock %}
+            {% block javascripts %}{% endblock %}
 
 
     </body>

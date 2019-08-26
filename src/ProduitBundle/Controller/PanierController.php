@@ -30,7 +30,9 @@ class PanierController extends Controller
             $id = $request->request->get('id');
             $qte = $request->request->get('qte');
             $produit = $em->getRepository('ProduitBundle:Produit')->find($id);
-
+            if(!$qte){
+                $qte = 1;
+            }
 
 
             if($produit->getStock()<$qte){
@@ -42,7 +44,7 @@ class PanierController extends Controller
 
             if($panier){
                 $panier->setNbrProduit($panier->getNbrProduit()+$qte);
-                $panier->setTotal($produit->getPrix()+ $panier->getTotal());
+                $panier->setTotal(($produit->getPrix()*$qte)+ $panier->getTotal());
 
             }else {
 
@@ -180,7 +182,7 @@ class PanierController extends Controller
 
         $panier = $em->getRepository('ProduitBundle:Panier')->findOneBy(array('id'=>$lignepanier->getPanier()->getId()));
 
-        $panier->setTotal($panier->getTotal() - $lignepanier->getProduit()->getPrix());
+        $panier->setTotal($panier->getTotal() - ($lignepanier->getProduit()->getPrix() * $lignepanier->getQuantite()));
         $panier->setNbrProduit($panier->getNbrProduit() - $lignepanier->getQuantite());
 
         $produit->setStock($produit->getStock()+ $lignepanier->getQuantite());

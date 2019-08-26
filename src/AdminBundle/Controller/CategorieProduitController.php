@@ -50,7 +50,7 @@ class CategorieProduitController extends Controller
             $categorieProduit->setCreated( new DateTime());
             $em->persist($categorieProduit);
             $em->flush();
-
+            $this->addFlash("success", "Success");
             return $this->redirectToRoute('categorieproduit_index');
 
         }
@@ -93,7 +93,7 @@ class CategorieProduitController extends Controller
 
 
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash("success", "Success");
             return $this->redirectToRoute('categorieproduit_index');
         }
 

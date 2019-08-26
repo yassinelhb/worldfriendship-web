@@ -94,13 +94,16 @@ $modele->setPrixPromo($aaa);
 
     public function createAction(Request $request){
 
+
+
         $Voiture=new Promotion();
-        $Produitt=new Produit();
         $form=$this->createForm(PromotionType::class,$Voiture);
 
         $form=$form->handleRequest($request);
-        if($form->isValid())
+        if($form->isSubmitted())
         {
+
+
             $az=$this->getDoctrine()->getRepository(Promotion::class);
 
             $verif=$Voiture->getProduit();
@@ -110,32 +113,11 @@ $modele->setPrixPromo($aaa);
                 $produit = $Voiture->getProduit();
                 $id = $Voiture->getProduit()->getId();
                 $prix = $produit->getPrix();
+                $Voiture->setNomPromotion($produit->getLibelle());
                 $produit->setPromotion(1);
                 $prixP = $prix - (($prix * $pourcentage) / 100);
                 $Voiture->setPrixInitiale($prix);
                 $Voiture->setPrixPromo($prixP);
-            $subject="Nouveau Promotion !!";
-            $uf=$az->mail();
-            $nbre=$az->countDQL();
-$mail='';
-$ap=" ";
-            $nbree = implode("", $nbre[0]);
-
-            $object="Nouveau promotion !! consultez notre site";
-            $username="benabdellatif123@gmail.com";
-            for ($i=0;$i < $nbree;$i++)
-            {
-
-                $mail = preg_replace('/\s/', '', $uf[$i]);
-                $message = \Swift_Message::newInstance()
-                    ->setSubject($subject)
-                    ->setFrom($username)
-                    ->setTo($mail)
-                    ->setBody($object);
-                $this->get('mailer')->send($message);
-                $this->get('session')->getFlashBag()->add('notice', 'valide');
-
-            }
 
                 $em->persist($Voiture, $produit);
                 $em->flush();

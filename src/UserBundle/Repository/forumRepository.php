@@ -28,5 +28,15 @@ class forumRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    public function findQuesByUserParameter($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery("select c from UserBundle:forum c 
+            where c.user=:id")
+            ->setParameter('id', $id);
+        return $query->getResult();
+    }
+
+
 
 }

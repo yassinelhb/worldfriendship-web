@@ -69,7 +69,7 @@ class Reservation
      */
     public function getId()
     {
-        return $this->id;
+        return $this->idReservation;
     }
 
     /**
